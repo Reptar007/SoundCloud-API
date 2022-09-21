@@ -1,7 +1,7 @@
 # SoundCloud-API
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text](./assets/images/diagram.PNG)
 
 ## API Documentation
 
@@ -1580,3 +1580,4 @@ Return songs filtered by query parameters.
         "createdAt": "CreatedAt is invalid"
       }
     }
+    
