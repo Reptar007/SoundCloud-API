@@ -10,9 +10,11 @@ module.exports = {
       },
       songId: {
         type: Sequelize.INTEGER,
+        references: { model: 'Songs'}
       },
       userId: {
         type: Sequelize.INTEGER,
+        references: { model: 'Users'}
       },
       body: {
         type: Sequelize.STRING,
