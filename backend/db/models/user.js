@@ -85,13 +85,16 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
+      imageUrl: {
+        type: DataTypes.STRING
+      }
     },
     {
       sequelize,
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
+          exclude: ["imageUrl","hashedPassword", "email", "createdAt", "updatedAt"],
         },
       },
       scopes: {
