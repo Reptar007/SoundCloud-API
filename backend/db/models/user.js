@@ -40,7 +40,18 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope("currentUser").findByPk(user.id);
     }
     static associate(models) {
-      // define association here
+      User.hasMany( models.Song, {
+        foreignKey: 'userId'
+      })
+      User.hasMany( models.Album, {
+        foreignKey: 'userId'
+      })
+      User.hasMany( models.Playlist, {
+        foreignKey: 'userId'
+      })
+      User.hasMany( models.Comment, {
+        foreignKey: 'userId'
+      })
     }
   };
 
@@ -79,13 +90,16 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
+      imageUrl: {
+        type: DataTypes.STRING
+      }
     },
     {
       sequelize,
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
+          exclude: ["imageUrl","hashedPassword", "email", "createdAt", "updatedAt"],
         },
       },
       scopes: {
