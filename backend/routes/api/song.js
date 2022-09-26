@@ -120,9 +120,8 @@ router.get('/:songId',  async(req,res) =>{
 
 router.delete('/:songId', requireAuth, async(req,res, next) =>{
     
-    
+    const foundSong = await Song.findByPk(req.params.songId);
     if (foundSong.userId === req.user.id) {
-      const goneSong = await Song.findByPk(req.params.songId);
 
       if (!goneSong) {
         res.json({
@@ -131,7 +130,7 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
         });
       }
 
-      await goneSong.destroy();
+      await foundSong.destroy();
 
       res.json({
         message: "Successfully deleted",

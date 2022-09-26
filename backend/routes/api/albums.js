@@ -71,11 +71,58 @@ router.post('/', requireAuth, async(req, res, next)=>{
         imageUrl
     })
 
-
     res.json(newAlbum)
 })
 
+router.put('/:albumId', requireAuth, async(req, res, next) =>{
+    const foundAlbum = await Album.findByPk(req.params.albumId)
 
+    if(!foundAlbum) {
+        res.json({
+          message: "Album couldn't be found",
+          statusCode: 404,
+        });
+    }
+
+    if (foundAlbum.userId === req.user.id) {
+      const { title, description, imageUrl } = req.body;
+      const updateAlbum = await foundAlbum.update({
+        title,
+        description,
+        imageUrl,
+      });
+
+      res.json(updateAlbum);
+    } else {
+      const err = new Error("Forbidden");
+      err.status = 403;
+      next(err);
+    }
+})
+
+router.delete('/:albumId', requireAuth, async(req, res, next)=>{
+    const foundAlbum = await Album.findByPk(req.params.albumId)
+
+    if(!foundAlbum) {
+        res.json({
+          message: "Album couldn't be found",
+          statusCode: 404,
+        });
+    }
+
+    if (foundAlbum.userId === req.user.id) {
+      await foundAlbum.destroy()
+
+      res.json({
+        message: "Successfully deleted",
+        statusCode: 200,
+      });
+    } else {
+      const err = new Error("Forbidden");
+      err.status = 403;
+      next(err);
+    }
+})
 
 
 module.exports = router;
