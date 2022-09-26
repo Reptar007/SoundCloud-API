@@ -15,6 +15,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: { model: "Users" },
+        onDelete: "Cascade"
       },
       title: {
         type: Sequelize.STRING,
