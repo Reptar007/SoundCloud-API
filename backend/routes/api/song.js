@@ -7,17 +7,20 @@ const router = express.Router();
 
 
 router.get('/', async(req, res) => {
-    const songs = await Song.findAll()
+    const songs = await Song.findAll();
 
-    res.json(songs)
+    const body = {
+        Songs: songs
+    }
+
+    res.json(body)
 })
 
 router.get('/current', requireAuth, async(req,res) => {
     const userId = req.user.id
 
     const userSongs = await Song.findAll({
-        where: { userId: userId },
-        attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt',['imageUrl', 'previewImage']]
+        where: { userId: userId }
     })
 
 
@@ -33,6 +36,16 @@ router.post("/", requireAuth, async(req, res)=>{
 
     const { title, description, url, imageUrl, albumId } = req.body
 
+    const test = await Album.findByPk(albumId)
+
+    if(!test && albumId !== null) {
+      console.log('hello')
+      res.json({      
+        "message": "Album couldn't be found",
+        "statusCode": 404
+      })
+    }
+
     const newSong = await Song.create({
         title,
         description,
@@ -42,21 +55,8 @@ router.post("/", requireAuth, async(req, res)=>{
         userId: req.user.id
     })
 
-    const songBody = await Song.findByPk(newSong.id, {
-      attributes: [
-        "id",
-        "userId",
-        "albumId",
-        "title",
-        "description",
-        "url",
-        "createdAt",
-        "updatedAt",
-        ["imageUrl", "previewImage"],
-      ],
-    });
 
-    res.json(songBody)
+    res.json(newSong)
 });
 
 router.put('/:songId', requireAuth, async(req,res,next) =>{
@@ -78,19 +78,8 @@ router.put('/:songId', requireAuth, async(req,res,next) =>{
             albumId
         })
 
-        let body = {
-            id: updatedSong.id,
-            userId: updatedSong.userId,
-            albumId: updatedSong.albumId,
-            title: updatedSong.title,
-            description: updatedSong.description,
-            url: updatedSong.url,
-            createdAt: updatedSong.createdAt,
-            updatedAt: updatedSong.updatedAt,
-            previewImage: updatedSong.imageUrl
-        }
 
-        res.json(body)
+        res.json(updatedSong)
     } else {
         const err = new Error("Forbidden")
         err.status = 403
@@ -100,7 +89,6 @@ router.put('/:songId', requireAuth, async(req,res,next) =>{
 
 router.get('/:songId',  async(req,res) =>{
     const song = await Song.findByPk(req.params.songId, {
-        attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt',['imageUrl', 'previewImage']],
         raw:true
     })
 
@@ -113,17 +101,17 @@ router.get('/:songId',  async(req,res) =>{
     }
 
     const artist = await User.findByPk(song.userId, {
-        attributes: ['id', 'username', ['imageUrl', 'previewImage']],
+        attributes: ['id', 'username', 'imageUrl'],
         raw:true
     })
     const album = await Album.findByPk(song.albumId, {
-      attributes: ["id", "title", ["imageUrl", "previewImage"]],
+      attributes: ["id", "title", "imageUrl"],
       raw: true,
     });
 
     let body = {
         ...song,
-        Artist: artist,
+        User: artist,
         Album: album
     }
 

@@ -28,16 +28,19 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   }
-  Song.init({
-    albumId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    url: DataTypes.STRING,
-    imageUrl: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Song',
-  });
+  Song.init(
+    {
+      albumId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      description: DataTypes.STRING,
+      url: DataTypes.STRING,
+      imageUrl: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Song",
+    }
+  );
   return Song;
 };

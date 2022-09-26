@@ -19,14 +19,17 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   }
-  Album.init({
-    userId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    imageUrl: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Album',
-  });
+  Album.init(
+    {
+      userId: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      description: DataTypes.STRING,
+      imageUrl: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Album",
+    }
+  );
   return Album;
 };
