@@ -123,7 +123,7 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
     const foundSong = await Song.findByPk(req.params.songId);
     if (foundSong.userId === req.user.id) {
 
-      if (!goneSong) {
+      if (!foundSong) {
         res.json({
           message: "Song couldn't be found",
           statusCode: 404,
