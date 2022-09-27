@@ -3,7 +3,21 @@ const express = require("express");
 const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+
+
 const router = express.Router();
+
+const validateAlbums = [
+  check("title")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('"Album title is required"'),
+  handleValidationErrors
+];
+
+router.use(validateAlbums)
 
 router.get('/', async(req, res, next) =>{
     const albums = await Album.findAll();
@@ -77,11 +91,12 @@ router.post('/', requireAuth, async(req, res, next)=>{
 router.put('/:albumId', requireAuth, async(req, res, next) =>{
     const foundAlbum = await Album.findByPk(req.params.albumId)
 
-    if(!foundAlbum) {
-        res.json({
-          message: "Album couldn't be found",
-          statusCode: 404,
-        });
+    if (!foundAlbum) {
+      res.statusCode = 404;
+      res.json({
+        message: "Album couldn't be found",
+        statusCode: 404,
+      });
     }
 
     if (foundAlbum.userId === req.user.id) {
@@ -103,11 +118,12 @@ router.put('/:albumId', requireAuth, async(req, res, next) =>{
 router.delete('/:albumId', requireAuth, async(req, res, next)=>{
     const foundAlbum = await Album.findByPk(req.params.albumId)
 
-    if(!foundAlbum) {
-        res.json({
-          message: "Album couldn't be found",
-          statusCode: 404,
-        });
+    if (!foundAlbum) {
+      res.statusCode = 404;
+      res.json({
+        message: "Album couldn't be found",
+        statusCode: 404,
+      });
     }
 
     if (foundAlbum.userId === req.user.id) {

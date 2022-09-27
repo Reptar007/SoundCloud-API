@@ -3,13 +3,28 @@ const express = require("express");
 const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+
+
 const router = express.Router();
+
+const validateComments = [
+  check("body")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('"Comment body text is required"'),
+];
+
+router.use(validateComments)
 
 router.put('/:commentId', requireAuth, async(req, res, next) =>{
     const comment = await Comment.findByPk(req.params.commentId)
 
     if(!comment) {
-        res.json({                    
+        return res.json(
+          res.status = 404,
+          {                    
             "message": "Comment couldn't be found",
             "statusCode": 404
         })
@@ -32,7 +47,9 @@ router.delete('/:commentId', requireAuth, async(req,res,next) =>{
      const comment = await Comment.findByPk(req.params.commentId);
 
      if (!comment) {
-       res.json({
+       return res.json(
+        res.status = 404,
+        {
          message: "Comment couldn't be found",
          statusCode: 404,
        });

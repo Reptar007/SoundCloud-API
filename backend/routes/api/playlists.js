@@ -4,7 +4,20 @@ const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User, PlaylistSong } = require("../../db/models");
 const { Op } = require('sequelize')
 
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+
 const router = express.Router();
+
+const validatePlaylist = [
+  check("name")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Playlist name is required"),
+  handleValidationErrors
+];
+
+router.use(validatePlaylist)
 
 router.get('/current',  requireAuth, async(req, res)=>{
     const playlist = await Playlist.findAll({
@@ -28,7 +41,9 @@ router.get('/:playlistId', async(req, res)=>{
     })
 
     if(!playlist) {
-        res.json({
+        return res.json(
+          res.status = 404,
+          {
           message: "Playlist couldn't be found",
           statusCode: 404,
         });
@@ -54,7 +69,9 @@ router.put('/:playlistId', requireAuth, async(req, res, next) =>{
       const playlist = await Playlist.findByPk(req.params.playlistId);
 
       if (!playlist) {
-        res.json({
+        return res.json(
+          res.status = 404,
+          {
           message: "Playlist couldn't be found",
           statusCode: 404,
         });
@@ -82,7 +99,9 @@ router.post('/:playlistId/songs', requireAuth, async(req, res, next)=> {
     const playlist = await Playlist.findByPk(req.params.playlistId)
 
     if(!playlist) {
-        res.json({
+        return res.json(
+          res.status = 404,
+          {
           message: "Playlist couldn't be found",
           statusCode: 404,
         });
@@ -94,7 +113,9 @@ router.post('/:playlistId/songs', requireAuth, async(req, res, next)=> {
       const song = await Song.findByPk(songId);
 
       if (!song) {
-        res.json({
+       return res.json(
+        res.status = 404,
+        {
           message: "Song couldn't be found",
           statusCode: 404,
         });
@@ -134,7 +155,9 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) 
     const playlist = await Playlist.findByPk(req.params.playlistId);
 
     if (!playlist) {
-      res.json({
+      return res.json(
+        res.status = 404,
+        {
         message: "Playlist couldn't be found",
         statusCode: 404,
       });
@@ -143,7 +166,9 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) 
     const song = await Song.findByPk(req.params.songId);
 
     if (!song) {
-      res.json({
+      return res.json(
+        res.status = 404,
+        {
         message: "Song couldn't be found",
         statusCode: 404,
       });
@@ -159,7 +184,9 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) 
       });
 
       if (!playlistSongs[0]) {
-        res.json({
+        return res.json(
+          res.status = 404,
+          {
           message: "The specified song was not on this playlist",
           statusCode: 404,
         });
@@ -181,7 +208,9 @@ router.delete('/:playlistId', requireAuth, async(req, res, next)=>{
     const playlist = await Playlist.findByPk(req.params.playlistId)
 
     if (!playlist) {
-      res.json({
+      return res.json(
+        res.status = 404,
+        {
         message: "Playlist couldn't be found",
         statusCode: 404,
       });

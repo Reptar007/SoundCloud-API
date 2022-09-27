@@ -3,8 +3,25 @@ const express = require("express");
 const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User } = require('../../db/models')
 
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+
+const validateSongs = [
+  check("title")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Song title is required"),
+  check("url")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage("Audio is required"),
+  handleValidationErrors,
+];
+
+
 const router = express.Router();
 
+router.use(validateSongs)
 
 router.get('/', async(req, res) => {
   
@@ -14,7 +31,8 @@ router.get('/', async(req, res) => {
   size = parseInt(size)
   
   if( page < 1 || size < 1) {
-    res.json({
+    res.json(res.status = 400,
+      {
       message: "Validation Error",
       statusCode: 400,
       errors: {
@@ -76,8 +94,10 @@ router.post("/", requireAuth, async(req, res)=>{
     const test = await Album.findByPk(albumId)
 
     if(!test && albumId !== null) {
-      console.log('hello')
-      res.json({      
+  
+      res.json(
+        res.status = 404,
+        {      
         "message": "Album couldn't be found",
         "statusCode": 404
       })
@@ -99,7 +119,9 @@ router.post("/", requireAuth, async(req, res)=>{
 router.put('/:songId', requireAuth, async(req,res,next) =>{
     const foundSong = await Song.findByPk(req.params.songId)
     if(!foundSong) {
-        res.json({
+        res.json(
+          res.status = 404,
+          {
           message: "Song couldn't be found",
           statusCode: 404,
         });
@@ -131,7 +153,8 @@ router.get('/:songId',  async(req,res) =>{
 
     if(!song) {
         res.statusCode = 404
-        res.json({
+        res.json(
+          res.status = 404, {
           message: "Song couldn't be found",
           statusCode: 404,
         });
@@ -160,7 +183,8 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
     const foundSong = await Song.findByPk(req.params.songId);
     
     if (!foundSong) {
-      res.json({
+      res.json(
+        res.status = 404, {
         message: "Song couldn't be found",
         statusCode: 404,
       });
@@ -186,7 +210,9 @@ router.get("/:songId/comments", async(req, res) =>{
   const song = await Song.findByPk(req.params.songId)
 
   if(!song) {
-    res.json({
+    res.json(
+      res.status = 404, 
+      {
       "message": "Song couldn't be found",
       "statusCode": 404
     })
@@ -211,7 +237,9 @@ router.post('/:songId/comments', requireAuth, async(req, res)=>{
   const song = await Song.findByPk(req.params.songId);
 
   if (!song) {
-    res.json({
+    res.json(
+      res.status = 404, 
+      {
       message: "Song couldn't be found",
       statusCode: 404,
     });
