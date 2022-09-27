@@ -154,7 +154,6 @@ router.get("/:songId/comments", async(req, res) =>{
     })
   }
   
-  
   const comments = await Comment.findAll({
     where: { userId: req.params.songId},
     include: {
@@ -169,6 +168,26 @@ router.get("/:songId/comments", async(req, res) =>{
 
   res.json(body)
 });
+
+router.post('/:songId/comments', requireAuth, async(req, res)=>{
+  const song = await Song.findByPk(req.params.songId);
+
+  if (!song) {
+    res.json({
+      message: "Song couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const { body } = req.body
+  const newComment = await Comment.create({
+    songId: song.id,
+    userId: req.user.id,
+    body
+  })
+
+  res.json(newComment)
+})
 
 
 module.exports = router;
