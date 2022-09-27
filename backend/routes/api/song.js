@@ -144,6 +144,15 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
 })
 
 router.get("/:songId/comments", async(req, res) =>{
+
+  const song = await Song.findByPk(req.params.songId)
+
+  if(!song) {
+    res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
   
   
   const comments = await Comment.findAll({
