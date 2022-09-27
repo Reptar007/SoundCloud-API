@@ -47,7 +47,18 @@ router.get("/:artistId/playlists", async(req, res) => {
 });
 
 router.get('/:artistId', async(req,res) =>{
-    const person = await User.findByPk(req.params.artistId);
+    const person = await User.findByPk(req.params.artistId, {
+      attributes: ['id', 'username', 'imageUrl'],
+      raw:true
+    });
+
+    const userSongs = await Song.count({
+      where: {userId: person.id}
+    })
+
+    const userAlbum = await Album.count({
+      where: { userId: person.id}
+    })
 
     if (!person) {
       res.json({
@@ -56,7 +67,13 @@ router.get('/:artistId', async(req,res) =>{
       });
     }
 
-    res.json(person)
+    const body = {
+      ...person,
+      totalSongs: userSongs,
+      totalAlbums: userAlbum
+    }
+
+    res.json(body)
 })
 
 
