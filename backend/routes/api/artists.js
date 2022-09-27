@@ -5,6 +5,13 @@ const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 
 const router = express.Router();
 
+router.get('/', async(req, res) =>{
+    const playlist = await Playlist.findAll()
+
+    res.json(playlist)
+})
+
+
 router.get('/:artistId/songs', async(req,res)=>{
     const person = await User.findByPk(req.params.artistId)
     
@@ -23,6 +30,27 @@ router.get('/:artistId/songs', async(req,res)=>{
     }
     res.json(body)
 })
+
+router.get("/:artistId/playlists", async(req, res) => {
+    const person = await User.findByPk(req.params.artistId);
+
+    if (!person) {
+      res.json({
+        message: "Artist couldn't be found",
+        statusCode: 404,
+      });
+    }
+    
+    const userPlaylist = await Playlist.findAll({
+        where: { userId: req.params.artistId }
+    })
+
+    const body = {
+        Playlist: userPlaylist
+    }
+
+    res.json(body)
+});
 
 router.get('/:artistId', async(req,res) =>{
     const person = await User.findByPk(req.params.artistId);
