@@ -147,9 +147,8 @@ router.post("/", validateSongs, requireAuth, async(req, res)=>{
         albumId,
         userId: req.user.id
     })
-
-    res.status = 201
-    res.json(newSong)
+    
+    res.json(res.status = 201, newSong)
 });
 
 

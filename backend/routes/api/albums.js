@@ -85,8 +85,8 @@ router.post('/', requireAuth, validateAlbums, async(req, res, next)=>{
         imageUrl
     })
 
-    res.status = 201
-    res.json(newAlbum)
+    
+    res.json(res.status = 201, newAlbum)
 })
 
 router.put('/:albumId', requireAuth, validateAlbums, async(req, res, next) =>{

@@ -146,8 +146,8 @@ router.post('/', requireAuth, async(req, res) => {
         imageUrl
     })
 
-    res.status = 201
-    res.json(playlist)
+    
+    res.json(res.status = 201, playlist)
 })
 
 router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) => {
