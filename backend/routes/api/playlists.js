@@ -93,7 +93,7 @@ router.put('/:playlistId', validatePlaylist, requireAuth, async(req, res, next) 
 
 })
 
-router.post('/:playlistId/songs', validatePlaylist, requireAuth, async(req, res, next)=> {
+router.post('/:playlistId/songs', requireAuth, async(req, res, next)=> {
     const playlist = await Playlist.findByPk(req.params.playlistId)
 
     if(!playlist) {
@@ -137,18 +137,17 @@ router.post('/:playlistId/songs', validatePlaylist, requireAuth, async(req, res,
     }
 })
 
-router.post('/', requireAuth, async(req, res) => {
-    const { name, imageUrl } = req.body 
-    
-    const playlist = await Playlist.create({
-        userId: req.user.id,
-        name,
-        imageUrl
-    })
+router.post("/", validatePlaylist, requireAuth, async (req, res) => {
+  const { name, imageUrl } = req.body;
 
-    
-    res.json(res.status = 201, playlist)
-})
+  const playlist = await Playlist.create({
+    userId: req.user.id,
+    name,
+    imageUrl,
+  });
+
+  res.json((res.status = 201), playlist);
+});
 
 router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) => {
     const playlist = await Playlist.findByPk(req.params.playlistId);
