@@ -123,7 +123,7 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
     const foundSong = await Song.findByPk(req.params.songId);
     if (foundSong.userId === req.user.id) {
 
-      if (!goneSong) {
+      if (!foundSong) {
         res.json({
           message: "Song couldn't be found",
           statusCode: 404,
@@ -143,6 +143,32 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
     }
 })
 
+router.get("/:songId/comments", async(req, res) =>{
+
+  const song = await Song.findByPk(req.params.songId)
+
+  if(!song) {
+    res.json({
+      "message": "Song couldn't be found",
+      "statusCode": 404
+    })
+  }
+  
+  
+  const comments = await Comment.findAll({
+    where: { userId: req.params.songId},
+    include: {
+      model: User,
+      attributes: ['id', 'username']
+    }
+  })
+
+  const body = {
+    Comments: comments
+  }
+
+  res.json(body)
+});
 
 
 module.exports = router;
