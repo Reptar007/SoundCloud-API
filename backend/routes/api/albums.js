@@ -17,7 +17,7 @@ const validateAlbums = [
   handleValidationErrors
 ];
 
-router.use(validateAlbums)
+
 
 router.get('/', async(req, res, next) =>{
     const albums = await Album.findAll();
@@ -75,7 +75,7 @@ router.get('/:albumId', async(req, res, next)=>{
     res.json(body)
 })
 
-router.post('/', requireAuth, async(req, res, next)=>{
+router.post('/', requireAuth, validateAlbums, async(req, res, next)=>{
     const { title, description, imageUrl } = req.body
 
     const newAlbum = await Album.create({
@@ -85,10 +85,11 @@ router.post('/', requireAuth, async(req, res, next)=>{
         imageUrl
     })
 
+    res.status = 201
     res.json(newAlbum)
 })
 
-router.put('/:albumId', requireAuth, async(req, res, next) =>{
+router.put('/:albumId', requireAuth, validateAlbums, async(req, res, next) =>{
     const foundAlbum = await Album.findByPk(req.params.albumId)
 
     if (!foundAlbum) {

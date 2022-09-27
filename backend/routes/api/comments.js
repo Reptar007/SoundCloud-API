@@ -16,9 +16,7 @@ const validateComments = [
     .withMessage('"Comment body text is required"'),
 ];
 
-router.use(validateComments)
-
-router.put('/:commentId', requireAuth, async(req, res, next) =>{
+router.put('/:commentId', validateComments, requireAuth, async(req, res, next) =>{
     const comment = await Comment.findByPk(req.params.commentId)
 
     if(!comment) {

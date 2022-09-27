@@ -18,10 +18,15 @@ const validateSongs = [
   handleValidationErrors,
 ];
 
+const validateComments = [
+  check("body")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('"Comment body text is required"'),
+];
 
 const router = express.Router();
 
-router.use(validateSongs)
 
 router.get('/', async(req, res) => {
   
@@ -87,7 +92,38 @@ router.get('/current', requireAuth, async(req,res) => {
     
 })
 
-router.post("/", requireAuth, async(req, res)=>{
+router.get('/:songId',  async(req,res) =>{
+    const song = await Song.findByPk(req.params.songId, {
+        raw:true
+    })
+
+    if(!song) {
+        res.json(
+          res.status = 404, {
+          message: "Song couldn't be found",
+          statusCode: 404,
+        });
+    }
+
+    const artist = await User.findByPk(song.userId, {
+        attributes: ['id', 'username', 'imageUrl'],
+        raw:true
+    })
+    const album = await Album.findByPk(song.albumId, {
+      attributes: ["id", "title", "imageUrl"],
+      raw: true,
+    });
+
+    let body = {
+        ...song,
+        User: artist,
+        Album: album
+    }
+
+    res.json(body)
+})
+
+router.post("/", validateSongs, requireAuth, async(req, res)=>{
 
     const { title, description, url, imageUrl, albumId } = req.body
 
@@ -112,11 +148,12 @@ router.post("/", requireAuth, async(req, res)=>{
         userId: req.user.id
     })
 
-
+    res.status = 201
     res.json(newSong)
 });
 
-router.put('/:songId', requireAuth, async(req,res,next) =>{
+
+router.put('/:songId', validateSongs, requireAuth, async(req,res,next) =>{
     const foundSong = await Song.findByPk(req.params.songId)
     if(!foundSong) {
         res.json(
@@ -146,37 +183,6 @@ router.put('/:songId', requireAuth, async(req,res,next) =>{
     }
 })
 
-router.get('/:songId',  async(req,res) =>{
-    const song = await Song.findByPk(req.params.songId, {
-        raw:true
-    })
-
-    if(!song) {
-        res.statusCode = 404
-        res.json(
-          res.status = 404, {
-          message: "Song couldn't be found",
-          statusCode: 404,
-        });
-    }
-
-    const artist = await User.findByPk(song.userId, {
-        attributes: ['id', 'username', 'imageUrl'],
-        raw:true
-    })
-    const album = await Album.findByPk(song.albumId, {
-      attributes: ["id", "title", "imageUrl"],
-      raw: true,
-    });
-
-    let body = {
-        ...song,
-        User: artist,
-        Album: album
-    }
-
-    res.json(body)
-})
 
 router.delete('/:songId', requireAuth, async(req,res, next) =>{
     
@@ -233,7 +239,7 @@ router.get("/:songId/comments", async(req, res) =>{
   res.json(body)
 });
 
-router.post('/:songId/comments', requireAuth, async(req, res)=>{
+router.post('/:songId/comments', validateComments, requireAuth, async(req, res)=>{
   const song = await Song.findByPk(req.params.songId);
 
   if (!song) {

@@ -17,7 +17,6 @@ const validatePlaylist = [
   handleValidationErrors
 ];
 
-router.use(validatePlaylist)
 
 router.get('/current',  requireAuth, async(req, res)=>{
     const playlist = await Playlist.findAll({
@@ -64,8 +63,7 @@ router.get('/:playlistId', async(req, res)=>{
 
 })
 
-
-router.put('/:playlistId', requireAuth, async(req, res, next) =>{
+router.put('/:playlistId', validatePlaylist, requireAuth, async(req, res, next) =>{
       const playlist = await Playlist.findByPk(req.params.playlistId);
 
       if (!playlist) {
@@ -95,7 +93,7 @@ router.put('/:playlistId', requireAuth, async(req, res, next) =>{
 
 })
 
-router.post('/:playlistId/songs', requireAuth, async(req, res, next)=> {
+router.post('/:playlistId/songs', validatePlaylist, requireAuth, async(req, res, next)=> {
     const playlist = await Playlist.findByPk(req.params.playlistId)
 
     if(!playlist) {
@@ -148,6 +146,7 @@ router.post('/', requireAuth, async(req, res) => {
         imageUrl
     })
 
+    res.status = 201
     res.json(playlist)
 })
 
