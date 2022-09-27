@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId'
       })
       Song.belongsTo( models.Album, {
-        foreignKey: 'albumId'
+        foreignKey: 'albumId',
+        onDelete: 'set null',
+        hooks: true
       })
       Song.hasMany( models.Comment, {
         foreignKey: 'songId'

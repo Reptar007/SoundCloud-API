@@ -52,6 +52,13 @@ router.get('/:artistId', async(req,res) =>{
       raw:true
     });
 
+    if (!person) {
+      res.json({
+        message: "Artist couldn't be found",
+        statusCode: 404,
+      });
+    }
+    
     const userSongs = await Song.count({
       where: {userId: person.id}
     })
@@ -60,12 +67,6 @@ router.get('/:artistId', async(req,res) =>{
       where: { userId: person.id}
     })
 
-    if (!person) {
-      res.json({
-        message: "Artist couldn't be found",
-        statusCode: 404,
-      });
-    }
 
     const body = {
       ...person,

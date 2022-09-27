@@ -139,6 +139,15 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) 
         statusCode: 404,
       });
     }
+    
+    const song = await Song.findByPk(req.params.songId);
+
+    if (!song) {
+      res.json({
+        message: "Song couldn't be found",
+        statusCode: 404,
+      });
+    }
 
     if (playlist.userId === req.user.id) {
       const { playlistId, songId } = req.params;
@@ -149,7 +158,7 @@ router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) 
         },
       });
 
-      if (!playlistSongs) {
+      if (!playlistSongs[0]) {
         res.json({
           message: "The specified song was not on this playlist",
           statusCode: 404,

@@ -111,7 +111,9 @@ router.delete('/:albumId', requireAuth, async(req, res, next)=>{
     }
 
     if (foundAlbum.userId === req.user.id) {
-      await foundAlbum.destroy()
+      await foundAlbum.destroy({
+        force: true
+      })
 
       res.json({
         message: "Successfully deleted",

@@ -11,6 +11,7 @@ module.exports = {
       albumId: {
         type: Sequelize.INTEGER,
         references: { model: "Albums" },
+        onDelete: 'set null'
       },
       userId: {
         type: Sequelize.INTEGER,
