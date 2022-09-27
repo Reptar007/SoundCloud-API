@@ -143,6 +143,23 @@ router.delete('/:songId', requireAuth, async(req,res, next) =>{
     }
 })
 
+router.get("/:songId/comments", async(req, res) =>{
+  
+  
+  const comments = await Comment.findAll({
+    where: { userId: req.params.songId},
+    include: {
+      model: User,
+      attributes: ['id', 'username']
+    }
+  })
+
+  const body = {
+    Comments: comments
+  }
+
+  res.json(body)
+});
 
 
 module.exports = router;
