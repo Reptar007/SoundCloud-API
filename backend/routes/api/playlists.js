@@ -2,7 +2,7 @@ const express = require("express");
 
 const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User, PlaylistSong } = require("../../db/models");
-const playlistsong = require("../../db/models/playlistsong");
+const { Op } = require('sequelize')
 
 const router = express.Router();
 
@@ -130,7 +130,43 @@ router.post('/', requireAuth, async(req, res) => {
     res.json(playlist)
 })
 
+router.delete("/:playlistId/songs/:songId", requireAuth, async (req, res, nect) => {
+    const playlist = await Playlist.findByPk(req.params.playlistId);
 
+    if (!playlist) {
+      res.json({
+        message: "Playlist couldn't be found",
+        statusCode: 404,
+      });
+    }
+
+    if (playlist.userId === req.user.id) {
+      const { playlistId, songId } = req.params;
+
+      const playlistSongs = await PlaylistSong.findAll({
+        where: {
+          [Op.and]: [{ songId: songId }, { playlistId: playlistId }],
+        },
+      });
+
+      if (!playlistSongs) {
+        res.json({
+          message: "The specified song was not on this playlist",
+          statusCode: 404,
+        });
+      }
+
+      await playlistSongs[0].destroy();
+      res.json({
+        message: "Successfully deleted",
+        statusCode: 200,
+      });
+    } else {
+      const err = new Error("Forbidden");
+      err.status = 403;
+      next(err);
+    }
+});
 
 router.delete('/:playlistId', requireAuth, async(req, res, next)=>{
     const playlist = await Playlist.findByPk(req.params.playlistId)
@@ -141,8 +177,7 @@ router.delete('/:playlistId', requireAuth, async(req, res, next)=>{
         statusCode: 404,
       });
     }
-    console.log(playlist.userId)
-    console.log(req.user.id)
+    
     if (playlist.userId === req.user.id) {
       await playlist.destroy()
 
