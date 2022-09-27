@@ -7,10 +7,47 @@ const router = express.Router();
 
 
 router.get('/', async(req, res) => {
-    const songs = await Song.findAll();
+  
+  let { page, size } = req.query
+  
+  page = parseInt(page)
+  size = parseInt(size)
+  
+  if( page < 1 || size < 1) {
+    res.json({
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {
+        page: "Page must be greater than or equal to 1",
+        size: "Size must be greater than or equal to 1",
+        createdAt: "CreatedAt is invalid",
+      },
+    });
+  }
+  
+  page ? null: page = 1
+  size ? null: size = 20
+  
+  page > 10 ? page = 10: null
+  size > 20 ? size = 20: null
+  
+  let limit = size
+  let offset = size * (page - 1)
+  
+  const songs = await Song.findAll({
+    include: {
+      model: User,
+      attributes: ["id", "username", "imageUrl"],
+    },
+    limit,
+    offset,
+  });
+
 
     const body = {
-        Songs: songs
+        Songs: songs,
+        page: page,
+        size
     }
 
     res.json(body)
