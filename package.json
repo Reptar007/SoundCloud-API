@@ -24,6 +24,5 @@
   "homepage": "https://github.com/Reptar007/SoundCloud-API#readme",
   "dependencies": {
     "pg": "^8.8.0"
-  },
-  "proxy": "http://localhost:8000"
+  }
 }
