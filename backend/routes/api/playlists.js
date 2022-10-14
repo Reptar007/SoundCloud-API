@@ -213,7 +213,7 @@ router.delete('/:playlistId', requireAuth, async(req, res, next)=>{
         statusCode: 404,
       });
     }
-    
+  
     if (playlist.userId === req.user.id) {
       await playlist.destroy()
 
