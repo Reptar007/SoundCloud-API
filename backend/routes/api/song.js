@@ -123,16 +123,16 @@ router.get('/:songId',  async(req,res) =>{
     res.json(body)
 })
 
-router.post("/", validateSongs, requireAuth, async(req, res)=>{
-
+router.post("/", [validateSongs, requireAuth], async(req, res)=>{
+  console.log(req.body)
     const { title, description, url, imageUrl, albumId } = req.body
 
     const test = await Album.findByPk(albumId)
 
     if(!test && albumId !== null) {
-  
+      
+      res.status = 404,
       res.json(
-        res.status = 404,
         {      
         "message": "Album couldn't be found",
         "statusCode": 404

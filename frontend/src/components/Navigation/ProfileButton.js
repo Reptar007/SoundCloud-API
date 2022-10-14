@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import SongCreateButton from "./CreateSong/SongCreateButton";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
+      <SongCreateButton user={user} />
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>

@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/GETALLSONGS'
+const POST_A_SONG = 'songs/POSTASONG'
 
 
 /* ----- ACTIONS CREATOR----- */
@@ -12,6 +13,12 @@ const get = (songs) => {
     }
 }
 
+const post = song => {
+    return {
+        type: POST_A_SONG,
+        song
+    }
+}
 
 /* ----- THUNKS CREATOR----- */
 
@@ -23,6 +30,22 @@ export const getAllSongsThunkCreator = () => async dispatch => {
         dispatch(get(songs))
         return songs
     }
+}
+
+export const createASongThunkCreator = (payload) => async dispatch => {
+    console.log('this is my paylaod: ', payload)
+    const res = await csrfFetch("/api/songs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    if(res.ok) {
+        const song = await res.json()
+        dispatch(post(song))
+        console.log(song)
+        return song
+    } 
 }
 
 /* ----- HELPER FUNCTIONS ----- */
@@ -41,7 +64,11 @@ const songReducer = (state = {}, action) => {
                 songsState[song.id] = song
             })
             return songsState
-        default:
+        case POST_A_SONG:
+            const addSong = { ...state}
+            addSong[action.song.id] = action.song
+            return addSong
+         default:
             return state
     }
 }
