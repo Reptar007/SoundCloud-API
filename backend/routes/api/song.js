@@ -39,7 +39,7 @@ router.post("/", requireAuth, async(req, res)=>{
     const test = await Album.findByPk(albumId)
 
     if(!test && albumId !== null) {
-      console.log('hello')
+      
       res.json({      
         "message": "Album couldn't be found",
         "statusCode": 404

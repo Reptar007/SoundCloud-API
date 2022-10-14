@@ -141,8 +141,7 @@ router.delete('/:playlistId', requireAuth, async(req, res, next)=>{
         statusCode: 404,
       });
     }
-    console.log(playlist.userId)
-    console.log(req.user.id)
+  
     if (playlist.userId === req.user.id) {
       await playlist.destroy()
 
