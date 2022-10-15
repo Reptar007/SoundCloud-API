@@ -1,0 +1,6 @@
+nav {
+    display: flex;
+    border: 1px solid black;
+    width: 100%;
+    align-items: center;
+}

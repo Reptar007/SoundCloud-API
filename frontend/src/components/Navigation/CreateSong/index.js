@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import { createASongThunkCreator } from '../../../store/songs'
 
 
-function CreatSongFrom({ user }) {
+function CreateSongForm({ user }) {
     
     const dispatch = useDispatch()
     const history = useHistory()
@@ -96,10 +96,10 @@ function CreatSongFrom({ user }) {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-        <button type='submit'>Create Song</button>
+        <button type='submit' disabled={validateErrors.length}>Create Song</button>
       </form>
     );
 
 }
 
-export default CreatSongFrom
+export default CreateSongForm

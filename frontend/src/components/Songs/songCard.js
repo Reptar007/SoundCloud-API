@@ -1,18 +1,19 @@
 import { useDispatch } from "react-redux";
 import { removeSongThunkCreator } from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
-
+import Comments from "../Comments";
 
 
 const SongCard = ({song, formType}) => {
   const dispatch = useDispatch()
 
-
-
   let content;
   if(formType === 'normal') {
     content = (
-      <h3>{song.title}</h3>
+      <div>
+        <h3>{song.title}</h3>
+        <Comments song={song}/>
+      </div>
     )
   } else if(formType === 'profile') {
     content = (
@@ -25,9 +26,9 @@ const SongCard = ({song, formType}) => {
   }
 
     return (
-      <li>
+      <div>
         {content}
-      </li>
+      </div>
     );
 }
 
