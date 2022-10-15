@@ -17,7 +17,7 @@ function Songs() {
         <div>
             <ul>
                 {songs.map(song =>(
-                    <SongCard  key={song.id} song={song} />
+                    <SongCard  key={song.id} song={song} formType={'normal'}/>
                 ))}
             </ul>
         </div>

@@ -124,7 +124,6 @@ router.get('/:songId',  async(req,res) =>{
 })
 
 router.post("/", [validateSongs, requireAuth], async(req, res)=>{
-  console.log(req.body)
     const { title, description, url, imageUrl, albumId } = req.body
 
     const test = await Album.findByPk(albumId)
@@ -186,6 +185,7 @@ router.put('/:songId', validateSongs, requireAuth, async(req,res,next) =>{
 router.delete('/:songId', requireAuth, async(req,res, next) =>{
     
     const foundSong = await Song.findByPk(req.params.songId);
+    
     
     if (!foundSong) {
       res.json(

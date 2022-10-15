@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import CreatSongFrom from "./components/Navigation/CreateSong";
+import UserPage from "./components/UserPage";
 
 
 function App() {
@@ -27,14 +28,17 @@ function App() {
 
   return (
     <>
-      <Navigation isloggedIn={isLoggedIn} isLoaded={isLoaded} />
+      <Navigation user={user} isloggedIn={isLoggedIn} isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
             <Songs />
           </Route>
-          <Route path="/songs/new" >
+          <Route path={"/songs/new" || "/:artistId/songs/new"} >
             <CreatSongFrom user={user} />
+          </Route>
+          <Route path='/:serId/songs'>
+            <UserPage user={user}/>
           </Route>
         </Switch>
       )}
