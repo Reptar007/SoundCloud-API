@@ -1,10 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getCommentsBySongIdThunkCreator, getAllComments } from "../../store/comments";
+import { useDispatch} from "react-redux";
+import { getCommentsBySongIdThunkCreator } from '../../store/comments'
 import { useEffect, useState } from "react";
 
+
+
+import { postCommentBySongIdThunkCreator } from "../../store/comments"
+import { useHistory } from "react-router-dom";
+
 function Comments({ song }) {
-    
+
     const dispatch = useDispatch()
+
+
+    const history = useHistory()
+
     const [body, setBody] = useState('')
     const [validateErrors, setValidateErrors] = useState([])
 
@@ -18,11 +27,21 @@ function Comments({ song }) {
         setValidateErrors(errors)
     }, [body])
 
-    const comments = useSelector(getAllComments)
+    
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
+        const payload = {
+            body
+        }
+
+        let createdComment = await dispatch(postCommentBySongIdThunkCreator(payload, song.id))
+        if(createdComment && validateErrors.length === 0) {
+            history.push(`/songs/${song.id}`)
+        }
+
+        setBody('')
     }
 
     return (
@@ -38,11 +57,6 @@ function Comments({ song }) {
             />
           </label>
         </form>
-            <ul>
-                {comments.map(comment => (
-                    <li key={comment.id}>{comment.body}</li>
-                ))}
-             </ul>
       </div>
     );
 }

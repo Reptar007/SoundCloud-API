@@ -6,8 +6,6 @@ const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 
 const router = express.Router();
 
-
-
 router.get('/:artistId/songs', async(req,res)=>{
     const person = await User.findByPk(req.params.artistId)
     

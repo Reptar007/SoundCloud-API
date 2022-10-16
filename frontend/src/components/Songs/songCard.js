@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { removeSongThunkCreator } from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
 import Comments from "../Comments";
+import { NavLink } from "react-router-dom";
 
 
 const SongCard = ({song, formType}) => {
@@ -11,8 +12,9 @@ const SongCard = ({song, formType}) => {
   if(formType === 'normal') {
     content = (
       <div>
-        <h3>{song.title}</h3>
-        <Comments song={song}/>
+        <NavLink to={`songs/${song.id}`}>
+          <h3>{song.title}</h3>
+        </NavLink>
       </div>
     )
   } else if(formType === 'profile') {

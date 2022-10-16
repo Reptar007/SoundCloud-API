@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+
+
 import Songs from "./components/Songs";
 import CreatSongFrom from "./components/Navigation/CreateSong";
 import UserPage from "./components/UserPage";
+import SingleSongPage from "./components/Songs/SingleSongPage";
 
 
 function App() {
@@ -34,10 +37,16 @@ function App() {
           <Route exact path='/'>
             <Songs />
           </Route>
-          <Route path={"/songs/new" || "/:artistId/songs/new"} >
+
+          <Route exact strict path="/songs/new" >
             <CreatSongFrom user={user} />
           </Route>
-          <Route path='/:serId/songs'>
+
+          <Route  path='/songs/:songId'>
+            <SingleSongPage />
+          </Route>
+
+          <Route path='/:userId/songs'>
             <UserPage user={user}/>
           </Route>
         </Switch>

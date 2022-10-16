@@ -83,7 +83,6 @@ export const removeSongThunkCreator = (songId) => async dispatch => {
 }
 
 export const updateSongThunkCreator = (payload, id) => async dispatch => {
-    console.log('this is payload: ', payload)
     const res = await csrfFetch(`/api/songs/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -100,6 +99,7 @@ export const updateSongThunkCreator = (payload, id) => async dispatch => {
 /* ----- HELPER FUNCTIONS ----- */
 
 export const getAllSongs = (state) => Object.values(state.songs)
+export const getSongById = (id) => (state) => state.songs[id]
 
 
 /* ----- REDUCERS ----- */
