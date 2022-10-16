@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeSongThunkCreator } from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
-import Comments from "../Comments";
 import { NavLink } from "react-router-dom";
 
 
