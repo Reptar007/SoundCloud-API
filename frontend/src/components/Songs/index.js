@@ -13,11 +13,12 @@ function Songs() {
     
     const songs = useSelector(getAllSongs)
     
+    
     return (
         <div>
             <ul>
                 {songs.map(song =>(
-                    <SongCard  key={song.id} song={song} formType={'normal'}/>
+                    <SongCard  key={song.id} song={song} formType={'normal'} />
                 ))}
             </ul>
         </div>

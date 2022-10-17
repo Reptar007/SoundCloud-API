@@ -8,7 +8,6 @@ function UpdateSongForm({ song, setShowModal }) {
  
   const dispatch = useDispatch();
   
-
   const [title, setTitle] = useState(song.title || '');
   const [description, setDescription] = useState(song.description || '');
   const [url, setUrl] = useState(song.url || '');
@@ -33,12 +32,9 @@ function UpdateSongForm({ song, setShowModal }) {
       imageUrl,
       albumId,
     };
-
-
     
     let updatedSong = await dispatch(updateSongThunkCreator(payload, song.id));
 
-    console.log('this is my updated song: ', updatedSong)
     if (updatedSong && validateErrors.length === 0) {
       setShowModal(false)
     }
