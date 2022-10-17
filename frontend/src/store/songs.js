@@ -15,7 +15,6 @@ const get = (songs) => {
     }
 }
 
-
 const post = song => {
     return {
         type: POST_A_SONG,

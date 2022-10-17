@@ -4,7 +4,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ModalProvider } from "./context/Modal";
-import { PersistGate } from "redux-persist/integration/react";
+import PlayerProvider from "./context/player";
 
 import App from "./App";
 import configureStore from "./store";
@@ -12,7 +12,7 @@ import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { createASongThunkCreator } from "./store/songs";
 
-const {store, persistor} = configureStore();
+const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
@@ -26,13 +26,13 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ModalProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ModalProvider>
-      </PersistGate>
+        <PlayerProvider>
+          <ModalProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ModalProvider>
+        </PlayerProvider>
     </Provider>
   );
 }
