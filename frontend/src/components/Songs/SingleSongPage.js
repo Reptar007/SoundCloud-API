@@ -10,9 +10,7 @@ import Comments from '../Comments/index'
 
 function SingleSongPage () {
     const dispatch = useDispatch()
-    const {songId} = useParams()
-
-    const [remove, setRemove] = useState(false)
+    const { songId } = useParams()
     
     const song = useSelector(getSongById(+songId))
     const comments = useSelector(getAllComments)

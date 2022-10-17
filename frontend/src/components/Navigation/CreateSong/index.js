@@ -14,7 +14,7 @@ function CreateSongForm({ user }) {
     const [description, setDescription] = useState()
     const [url, setUrl] = useState('')
     const [imageUrl, setImageUrl] = useState()
-    const [albumId, setAlbumId] = useState()
+    const [albumId, setAlbumId] = useState(null)
     const [validateErrors, setValidateErrors] = useState([])
 
     useEffect(() => {

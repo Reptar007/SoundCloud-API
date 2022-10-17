@@ -1,9 +1,11 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/GETALLSONGS'
+const GET_SONG_BY_USER = 'songs/GETSONGSBYUSER'
 const POST_A_SONG = 'songs/POSTASONG'
 const DELETE_SONG = 'songs/DELETE'
 const UPDATE_SONG = 'song/UPDATE'
+const CURRENT_SONG = 'song/CURRENTSONG'
 
 /* ----- ACTIONS CREATOR----- */
 
@@ -13,6 +15,7 @@ const get = (songs) => {
         songs
     }
 }
+
 
 const post = song => {
     return {
@@ -31,6 +34,13 @@ const remove = songId => {
 const update = song => {
     return {
         type: UPDATE_SONG,
+        song
+    }
+}
+
+export const currentSong = song => {
+    return {
+        type: CURRENT_SONG,
         song
     }
 }
@@ -61,15 +71,6 @@ export const createASongThunkCreator = (payload) => async dispatch => {
     } 
 }
 
-export const getSongsByArtistThunkCreator = (id) => async dispatch => {
-    const res = await csrfFetch(`/api/artists/${id}/songs`);
-
-    if(res.ok) {
-        const songs = await res.json()
-        dispatch(get(songs))
-        return songs
-    }
-}
 
 export const removeSongThunkCreator = (songId) => async dispatch => {
   
@@ -96,35 +97,48 @@ export const updateSongThunkCreator = (payload, id) => async dispatch => {
     }
 }
 
+
+
+
 /* ----- HELPER FUNCTIONS ----- */
 
-export const getAllSongs = (state) => Object.values(state.songs)
-export const getSongById = (id) => (state) => state.songs[id]
+export const getAllSongs = (state) => Object.values(state.songs.allSongs)
+export const getSongById = (id) => (state) => state.songs.allSongs[id]
 
 
 /* ----- REDUCERS ----- */
 
+const initialSate = {
+    allSongs: {},
+    current: {}
+}
 
-const songReducer = (state = {}, action) => {
+
+const songReducer = (state = initialSate, action) => {
     switch(action.type) {
         case GET_ALL_SONGS:
-            const songsState = {}
+            const songsState = {...state}
             action.songs.Songs.forEach(song => {
-                songsState[song.id] = song
+                songsState.allSongs[song.id] = song
             })
             return songsState
         case POST_A_SONG:
             const addSong = { ...state}
-            addSong[action.song.id] = action.song
+            addSong.allSongs[action.song.id] = action.song
             return addSong
         case DELETE_SONG:
             const removedState = { ...state}
-            delete removedState[action.songId]
+            delete removedState.allSongs[action.songId]
             return removedState
         case UPDATE_SONG:
             const updatedState = { ...state}
             updatedState[action.song.id] = action.song
             return updatedState
+        case CURRENT_SONG:
+            return {
+                ...state,
+                current: action.song 
+            }
          default:
             return state
     }
