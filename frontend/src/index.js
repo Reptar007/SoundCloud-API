@@ -3,15 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
 import { ModalProvider } from "./context/Modal";
+import { PersistGate } from "redux-persist/integration/react";
 
+import App from "./App";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { createASongThunkCreator } from "./store/songs";
 
-const store = configureStore();
+const {store, persistor} = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
   restoreCSRF();
@@ -25,11 +26,13 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <Provider store={store}>
-      <ModalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ModalProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ModalProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ModalProvider>
+      </PersistGate>
     </Provider>
   );
 }
