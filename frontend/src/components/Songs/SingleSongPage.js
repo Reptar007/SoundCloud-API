@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 
 import { getCommentsBySongIdThunkCreator, getAllComments} from "../../store/comments";
 import { getSongById } from '../../store/songs'
@@ -15,8 +15,6 @@ function SingleSongPage () {
     const song = useSelector(getSongById(+songId))
     const comments = useSelector(getAllComments)
     const user = useSelector(state => state.session.user)
-
-    
     
     useEffect(() => {
         dispatch(getCommentsBySongIdThunkCreator(+songId))
@@ -24,13 +22,14 @@ function SingleSongPage () {
     
     if(!song) return null
     if(!comments) return null
+
     
     return (
         <div>
             <h1>{song.title}</h1>
             <Comments song={song}/>
             <section>
-                {comments.map(comment => (
+                {comments?.map(comment => (
                     <CommentCard comment={comment} user={user}/>
                 ))}
             </section>

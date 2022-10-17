@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/GETALLSONGS'
-const GET_SONG_BY_USER = 'songs/GETSONGSBYUSER'
 const POST_A_SONG = 'songs/POSTASONG'
 const DELETE_SONG = 'songs/DELETE'
 const UPDATE_SONG = 'song/UPDATE'

@@ -6,7 +6,7 @@ function CommentCard ({comment, user}) {
     
     let removed = false
 
-    if (user.id === comment.userId) {
+    if (user?.id === comment.userId) {
         removed = true
     }
 

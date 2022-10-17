@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllSongs, getSongsByArtistThunkCreator } from '../../store/songs'
-import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { getAllSongs} from '../../store/songs'
 import SongCard from '../Songs/songCard'
 
 function UserPage ({ user }){

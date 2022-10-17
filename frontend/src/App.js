@@ -35,6 +35,7 @@ function App() {
       <Navigation user={user} isloggedIn={isLoggedIn} isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          
           <Route exact path='/'>
             <Songs />
           </Route>
@@ -50,6 +51,7 @@ function App() {
           <Route path='/:userId/songs'>
             <UserPage user={user}/>
           </Route>
+
         </Switch>
       )}
         <Player />
