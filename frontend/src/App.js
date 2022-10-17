@@ -9,6 +9,7 @@ import Songs from "./components/Songs";
 import CreatSongFrom from "./components/Navigation/CreateSong";
 import UserPage from "./components/UserPage";
 import SingleSongPage from "./components/Songs/SingleSongPage";
+import Player from "./components/AudioPlayer";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           </Route>
         </Switch>
       )}
+        <Player />
     </>
   );
 }
