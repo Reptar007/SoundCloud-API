@@ -1,19 +1,30 @@
 nav {
     display: flex;
-    background-color: #333333;
-    width: 100%;
+    background: black;
+    justify-self: center;
+    width: 1240px;
     align-items: center;
     height: 46px;
+    margin: auto;
+
+}
+
+.nav-dark {
+    width: 100%;
+    height: 46px;
+    background-color: #333333;
+    display: flex;
+    justify-content: center;
 }
 
 .container {
-    margin: 0 20%;
     padding: 0;
     height: 100%;
-    width: 100%;
+    width: 1240px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .loginSignup {

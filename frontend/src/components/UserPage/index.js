@@ -13,7 +13,7 @@ function UserPage ({ user }){
         <div>
             <ul>
                 {userSongs.map (song => (
-                    <SongCard key={song.id} song={song} user={user}formType={'profile'}/>
+                    <SongCard key={song.id} song={song} user={user} formType={'profile'}/>
                 ))}
             </ul>
         </div>

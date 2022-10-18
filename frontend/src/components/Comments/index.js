@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { postCommentBySongIdThunkCreator } from "../../store/comments"
 import { useHistory } from "react-router-dom";
 
-function Comments({ song }) {
+function Comments({ formType, song }) {
 
     const dispatch = useDispatch()
 
@@ -27,8 +27,6 @@ function Comments({ song }) {
         setValidateErrors(errors)
     }, [body])
 
-    
-
     const handleSubmit = async(e) => {
         e.preventDefault()
 
@@ -44,19 +42,28 @@ function Comments({ song }) {
         setBody('')
     }
 
+    let context;
+
+    if(formType === 'loginPage1') {
+      context = (
+          <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                required
+              />
+          </form>
+      );
+    } else {
+
+    }
+    
+
+
     return (
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Comment:
-            <input
-                type='text'
-                value={body}
-                onChange={e => setBody(e.target.value)}
-                required
-            />
-          </label>
-        </form>
+        {context}
       </div>
     );
 }

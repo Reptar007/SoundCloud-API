@@ -1,6 +1,6 @@
 .bodycontainer {
     margin: auto;
-    width: 60%;
+    width: 1240px;
     height: 90%;
     background: white;
 }
@@ -43,6 +43,7 @@
 
 .songCard {
     position: relative;
+    
 }
 
 .songCard:hover .btn {
@@ -59,13 +60,24 @@
     text-align: left;
 }
 
+.descriptionSong > .one {
+    font-size: small;
+    
+}
+
+.descriptionSong > .two {
+    font-size: smaller;
+    color: #d3d3d3;
+    font-style: italic;
+}
+
 .btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    height: 30%;
+    height: 25%;
     width: 30%;
     background: #FFDE59;
     outline: none;

@@ -1,14 +1,14 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { removeSongThunkCreator } from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
 import { NavLink } from "react-router-dom";
 import { currentSong } from "../../store/songs";
 import { usePlayer } from "../../context/player";
+import Comments from '../Comments'
 
 
 
-const SongCard = ({song, formType}) => {
+const SongCard = ({song, formType, user}) => {
   const dispatch = useDispatch()
   const {isPlay, setIsPlay, setIsPaused} = usePlayer()
 
@@ -18,7 +18,7 @@ const SongCard = ({song, formType}) => {
   if(!isPlay && current.url === song.url) {
     setButton = (
       <button
-      className="btn"
+        className={user ? "loginBtn" : "btn"}
         onClick={() => {
           dispatch(currentSong(song));
           setIsPlay(true);
@@ -31,7 +31,7 @@ const SongCard = ({song, formType}) => {
   } else if(isPlay && current.url === song.url) {
     setButton = (
       <button
-      className="btn"
+        className={user ? "loginBtn" : "btn"}
         onClick={() => {
           setIsPlay(false);
           setIsPaused(true);
@@ -45,7 +45,7 @@ const SongCard = ({song, formType}) => {
   if(!isPlay && current.url !== song.url) {
     setButton = (
       <button
-      className="btn"
+        className={user ? "loginBtn" : "btn"}
         onClick={(e) => {
           dispatch(currentSong(song));
           setIsPlay(true);
@@ -58,7 +58,7 @@ const SongCard = ({song, formType}) => {
   } else if(isPlay && current.url !== song.url) {
     setButton = (
       <button
-      className="btn"
+        className={user ? "loginBtn" : "btn"}
         onClick={(e) => {
           dispatch(currentSong(song));
           setIsPlay(true);
@@ -79,8 +79,8 @@ const SongCard = ({song, formType}) => {
         </NavLink>
         {setButton}
         <div className="descriptionSong">
-          <p>{song.title}</p>
-          <p>{song.User.username}</p>
+          <p className="one" >{song.title}</p>
+          <p className="two" >{song.User.username}</p>
         </div>
       </div>
     );
@@ -94,6 +94,31 @@ const SongCard = ({song, formType}) => {
         </button>
         <UpdateFormModal song={song} />
         {setButton}
+      </div>
+    );
+  } else if (formType === "loginpage") {
+    content = (
+      <div className="songs">
+        <div className="songsImage">
+          <img src={song.imageUrl} alt="" />
+        </div>
+        <div className="sound" style={{ 
+          backgroundImage: `url(${song.imageUrl})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+          }}>
+            <div className="songInfo">
+              {setButton}
+              <div >
+                <p className="one loginText italic">{song.title}</p>
+                <p className="two loginText bold">{song.User.username}</p>
+              </div>
+            </div>
+          <div className='loginComments'>
+            <Comments formType={'loginPage1'} song={song} />
+          </div>
+        </div>
       </div>
     );
   }

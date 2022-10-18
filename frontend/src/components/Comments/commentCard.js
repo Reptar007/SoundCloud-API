@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { deleteCommentByUserThunkCreator } from '../../store/comments'
 
-function CommentCard ({comment, user}) {
+function CommentCard ({ comment, user}) {
     const dispatch = useDispatch()
     
     let removed = false
@@ -9,6 +9,7 @@ function CommentCard ({comment, user}) {
     if (user?.id === comment.userId) {
         removed = true
     }
+
 
       return (
         <div>

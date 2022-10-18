@@ -10,6 +10,7 @@ import CreatSongFrom from "./components/Navigation/CreateSong";
 import UserPage from "./components/UserPage";
 import SingleSongPage from "./components/Songs/SingleSongPage";
 import Player from "./components/AudioPlayer";
+import UserLoginPage from "./components/UserLoginPage";
 
 
 function App() {
@@ -35,26 +36,32 @@ function App() {
       <Navigation user={user} isloggedIn={isLoggedIn} isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          
-          <Route exact path='/'>
+          <Route exact path="/">
             <Songs />
           </Route>
 
-          <Route exact strict path="/songs/new" >
+          <Route path="/logged-in">
+            <UserLoginPage user={user} />
+          </Route>
+
+          <Route exact strict path="/songs/new">
             <CreatSongFrom user={user} />
           </Route>
 
-          <Route  path='/songs/:songId'>
+          <Route path="/songs/:songId">
             <SingleSongPage />
           </Route>
 
-          <Route path='/:userId/songs'>
-            <UserPage user={user}/>
+          <Route path="/:userId/songs">
+            <UserPage user={user} />
           </Route>
 
+          <Route path="/:userId">
+            <UserLoginPage user={user}/>
+          </Route>
         </Switch>
       )}
-        <Player />
+      <Player />
     </>
   );
 }

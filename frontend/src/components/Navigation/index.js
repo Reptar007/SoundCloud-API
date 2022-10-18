@@ -6,7 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignupFormModal";
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, user }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
@@ -15,19 +15,26 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="loginSignup">
-        <LoginFormModal />
-        <SignUpFormModal />
+        <LoginFormModal user={user}/>
+        <SignUpFormModal user={user}/>
       </div>
     );
   }
 
   return (
-    <nav>
+    <nav className={ user ? 'nav-dark' : ''}>
       <div className="container">
         <div className="logo">
+          {!sessionUser && 
           <NavLink exact to="/">
             <img src="https://i.imgur.com/i9i0UBU.png" alt="" />
           </NavLink>
+          }
+          {sessionUser && (
+            <NavLink exact to={`/${sessionUser.id}`}>
+              <img src="https://i.imgur.com/i9i0UBU.png" alt="" />
+            </NavLink>
+          )}
         </div>
         {isLoaded && sessionLinks}
       </div>

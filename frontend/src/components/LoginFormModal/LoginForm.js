@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom'
 
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const history = useHistory()
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const sessionUser = useSelector(state => state.session.user)
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    history.push(`/logged-in`)
+
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
@@ -44,14 +52,10 @@ function LoginForm() {
         />
       <button type="submit">Log In</button>
       <button
-        onClick={() =>
-          dispatch(
-            sessionActions.login({
-              credential: "Demo-lition",
-              password: "password",
-            })
-          )
-        }
+        onClick={() => {
+          setCredential("Demo-lition")
+          setPassword("password")
+        }}
       >
         Demo User
       </button>

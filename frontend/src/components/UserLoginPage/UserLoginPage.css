@@ -1,0 +1,73 @@
+.UserSongCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.padding {
+    padding: 40px;
+}
+
+.loginTitle {
+    font-size: 1.25rem;
+    color: #d3d3d3;
+    font-weight: 100;
+    margin-bottom: 25px;
+}
+
+.songs {
+
+    margin: 10px 10px;
+    display: flex;
+    height: 160px;
+    width: 75%;
+}
+
+.songsImage {
+    height: 160px;
+    width: 160px;
+}
+
+.sound {
+    margin-left: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.songInfo {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    height: 40%;
+    width: 30%;
+}
+
+.loginBtn {
+    border-radius: 50%;
+    border: none;
+    background: #FFDE59;
+    color: white;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+.loginText {
+    background: rgb(0,0,0, 0.5);
+    width: fit-content;
+    color: white;
+    font-size: small;
+    margin-bottom: 5px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.loginComments {
+    position: absolute;
+    bottom: 0;
+}
