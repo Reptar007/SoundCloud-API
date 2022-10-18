@@ -1,0 +1,91 @@
+.bodycontainer {
+    margin: auto;
+    width: 60%;
+    height: 90%;
+    background: white;
+}
+
+.banner {
+    background: black;
+    height: 300px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.banner > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.quacksterW {
+    font-size: 35px;
+    color: #FFDE59;
+}
+
+.welcome {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.welcome > h1 {
+    font-size: xx-large;
+}
+
+.landingPage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    padding: 40px;
+}
+
+.songCard {
+    position: relative;
+}
+
+.songCard:hover .btn {
+    display: block;
+}
+
+.songTitle > img {
+    height: 100%;
+    width: 100%;
+    opacity: 0.80;
+}
+
+.descriptionSong {
+    text-align: left;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    height: 30%;
+    width: 30%;
+    background: #FFDE59;
+    outline: none;
+    border-radius: 50%;
+    border: none;
+    display: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.songCard>button>i {
+    color: white;
+    scale: 1.5;
+}
+
+.songTitle {
+    text-align: start;
+    text-indent: 10%;
+    text-decoration: none;
+    color: black;
+}

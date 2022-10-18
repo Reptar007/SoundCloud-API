@@ -13,7 +13,7 @@ import Comments from '../Comments/index'
 function SingleSongPage () {
     const dispatch = useDispatch()
     const { songId } = useParams()
-    const { isPlay, setIsPlay, isPaused, setIsPaused } = usePlayer();
+    const { isPlay, setIsPlay, setIsPaused } = usePlayer();
     
     const song = useSelector(getSongById(+songId))
     const comments = useSelector(getAllComments)

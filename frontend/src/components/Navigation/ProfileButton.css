@@ -1,0 +1,68 @@
+.profile-btn {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 100%;
+    width: 6%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.profile-btn > button {
+    background: none;
+    border: none;
+}
+
+.dropdownNav {
+    text-decoration: none;
+    color: black;
+    padding-right: 93px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.dropdownNav:hover {
+    background: #D3D3D3 ;
+}
+
+.logoutNav:hover {
+    background: #D3D3D3;
+    cursor: pointer;
+}
+
+.profile-btn > button > i {
+    color: white;
+    background-image: none;
+}
+
+.profile-btn>button>i:hover {
+    color: #FFDE59;
+    cursor: pointer;
+}
+
+
+.profile-dropdown {
+    position: absolute;
+    right: -1px;
+    top: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+    background: white;
+    z-index: 2;
+}
+
+.profile-dropdown > ul > button{
+    width: 100%;
+}
+
+.quackster {
+    color: #FFDE59;
+    font-size: 19px;
+    font-family: 'Baloo 2', cursive;;
+}
+
+.username {
+    padding-left: 10px;
+}

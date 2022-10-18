@@ -1,0 +1,13 @@
+.loginNav {
+    background: none;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    height: 100%;
+    border-right: 1px solid black;
+}
+
+.loginNav:hover {
+    color: #FFDE59;
+    cursor: pointer;
+}

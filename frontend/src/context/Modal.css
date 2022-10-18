@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #modal-background {
@@ -21,4 +22,55 @@
 #modal-content {
     position: absolute;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 400px;
+    border-radius: 5px;
+    padding: 2rem 1rem;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+#modal-content > form {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    flex-direction: column;
+}
+
+#modal-content > form > h1 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+#modal-content > form input {
+    width: 92%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+}
+
+#modal-content>form input:focus {
+    border: 1px solid rgb(192, 192,192)
+}
+
+#modal-content > form button {
+    font-size: 1rem;
+    margin-top: 1.8rem;
+    padding: 10px 0;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 90%;
+    color: #fff;
+    cursor: pointer;
+    background: rgba(255,222,89);
+}
+#modal-content>form button:hover {
+    background: rgba(255, 222, 89, 0.8);
 }

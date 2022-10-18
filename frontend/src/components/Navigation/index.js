@@ -14,19 +14,21 @@ function Navigation({ isLoaded }) {
     sessionLinks = <ProfileButton user={sessionUser} />
   } else {
     sessionLinks = (
-      <>
+      <div className="loginSignup">
         <LoginFormModal />
         <SignUpFormModal />
-      </>
+      </div>
     );
   }
 
   return (
     <nav>
-      <div>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
+      <div className="container">
+        <div className="logo">
+          <NavLink exact to="/">
+            <img src="https://i.imgur.com/i9i0UBU.png" alt="" />
+          </NavLink>
+        </div>
         {isLoaded && sessionLinks}
       </div>
     </nav>

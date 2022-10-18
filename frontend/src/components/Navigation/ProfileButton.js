@@ -4,6 +4,7 @@ import * as sessionActions from "../../store/session";
 import SongCreateButton from "./CreateSong/SongCreateButton";
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -36,23 +37,22 @@ function ProfileButton({ user }) {
   return (
     <>
       <SongCreateButton user={user} />
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button>
-              <NavLink to={`/${user.id}/songs`}>Profile</NavLink>
-            </button>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+      <div className="profile-btn">
+        <button onClick={openMenu}>
+          <i className="fas fa-user-circle fa-2x" />
+        </button>
+        {showMenu && (
+          <div className="profile-dropdown">
+            <p>
+              Hello <span className="quackster">Quackster!</span> <br />
+              Username: <br />
+              <span className="username">{user.username}</span>
+            </p>
+            <NavLink className='dropdownNav' to={`/${user.id}/songs`}>Profile</NavLink>
+            <p className='logoutNav' onClick={logout}>Log Out</p>
+          </div>
+        )}
+      </div>
     </>
   );
 }
