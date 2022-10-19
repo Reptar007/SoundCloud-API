@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { getAllSongs } from "../../store/songs";
 
@@ -8,12 +7,6 @@ import SongCard from "../Songs/songCard"
 import './UserLoginPage.css'
 
 function UserLoginPage({ user }) {
-    const dispatch = useDispatch
-
-    useEffect(() => {
-      
-    })
-
     const songs = useSelector(getAllSongs);
 
 

@@ -1,0 +1,175 @@
+.singlePage {
+    position: relative;
+}
+.singleBkImage {
+    position: relative;
+    z-index: 1;
+    height: 380px;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0);
+}
+
+.singleBkImage::before {
+    content: '';
+    position: absolute;
+    height: 380px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+}
+
+.singleImage {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    height: 340px;
+    width: 340px;
+    z-index: 2;
+}
+
+.singlePlayDescription {
+    width: 40%;
+    height: 25%;
+    position: absolute;
+    top: 2rem;
+    left: 2.5rem;
+    z-index: 3;
+    display: flex;
+}
+.singlebtn {
+    color:  white;
+    height: 60px;
+    width: 60px;
+    background: #FFDE59;
+    outline: none;
+    border-radius: 50%;
+    border: none;
+}
+
+.singlebtn i {
+    scale: 2;
+}
+
+.singleDescriptionSong {
+    color: white;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.singleDescriptionSong > .one {
+    background: rgba(0,0,0,0.8);
+    font-size: 1.5rem;
+}
+
+.singleComments {
+    padding: 2rem;
+    position: absolute;
+    width: 100%;
+    height: 200%;
+}
+.singleCommentBar {
+    display: flex;
+}
+
+.singleCommentBar img {
+    position: relative;
+    background: black;
+    height: 40px;
+}
+
+.singleCommentInput {
+    border: .5px solid #d9d9d9;
+    position: relative;
+    height: 40px;
+    width: 65%;
+    padding: 8px;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+}
+
+.singleCommentInput > form {
+    width: 100%;
+    display: flex;
+}
+
+.singleCommentInput > form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid rgb(217, 217, 217, 0.4);
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.singleCommentInput>form input:focus {
+    border: 1.5px solid rgb(217, 217, 217, 1);
+}
+
+.singleAllComments {
+    position: relative;
+    width: 65%;
+    padding: 2rem;
+}
+
+.commentstext {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #999999;
+    color: #999999;
+}
+
+.commentstext i {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.commets {
+    margin-top: .5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.commentPic {
+    height: 40px;
+    width: 40px;
+    background: black;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: .5rem;
+}
+
+.commentLeft {
+    display: flex;
+}
+
+.commentRight {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.commentText {
+    color: #999999;
+}
+
+.commentText > .one {
+    font-size: 14px;
+}
+
+.commentText > .two {
+    color: black;
+}
+
+.commentBtn {
+    background: #FFDE59;
+    color:  white;
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+}

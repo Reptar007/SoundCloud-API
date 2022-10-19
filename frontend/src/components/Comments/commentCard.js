@@ -10,13 +10,25 @@ function CommentCard ({ comment, user}) {
         removed = true
     }
 
+    const createdAt = new Date(comment?.createdAt).toLocaleDateString()
 
       return (
-        <div>
-          <li>{comment.body}</li>
-          {removed &&
-            <button onClick={() => dispatch(deleteCommentByUserThunkCreator(comment.id))}>delete</button>
-          }
+        <div className='commets'>
+          <div className='commentLeft'>
+            <div className='commentPic'>
+              <img src='https://i.imgur.com/Ivu8gkZ.png' alt='' />
+            </div>
+            <div className='commentText'>
+              <p className='one italic'>{user?.username}</p>
+              <p className='two'>{comment?.body}</p>
+            </div>
+          </div>
+          <div className='commentRight'>
+            <p>{createdAt}</p>
+            {removed &&
+              <button className='commentBtn' onClick={() => dispatch(deleteCommentByUserThunkCreator(comment.id))}>delete</button>
+            }
+          </div>
         </div>
       );
 }

@@ -57,8 +57,19 @@ function Comments({ formType, song }) {
           />
         </form>
       );
-    } else {
-
+    } else if(formType === 'singlesong') {
+      context = (
+        <form onSubmit={handleSubmit}>
+          <input
+            className="singleSongInput"
+            type="text"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            required
+            placeholder="Eggsplain your thoughts in the comments, but please, no fowl play "
+          />
+        </form>
+      );
     }
     
 

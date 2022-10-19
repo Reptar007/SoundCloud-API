@@ -86,8 +86,13 @@
 
 .loginComments > form input {
     width: 100%;
+    outline: none;
+    border: 1px solid rgb(217, 217,217, 0.4);
     padding-left: 10px;
-    border: none;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+}
+
+.loginComments > form input:focus {
+    border: 1.5px solid rgb(217, 217, 217, 1);
 }

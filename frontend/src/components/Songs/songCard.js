@@ -100,23 +100,28 @@ const SongCard = ({song, formType, user}) => {
     content = (
       <div className="songs">
         <div className="songsImage">
-          <img src={song?.imageUrl} alt="" />
+          <NavLink className="song" to={`songs/${song.id}`}>
+            <img src={song.imageUrl} alt="" />
+          </NavLink>
         </div>
-        <div className="sound" style={{ 
-          backgroundImage: `url(${song?.imageUrl})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-          }}>
-            <div className="songInfo">
-              {setButton}
-              <div >
-                <p className="one loginText italic">{song?.title}</p>
-                <p className="two loginText bold">{song?.User?.username}</p>
-              </div>
+        <div
+          className="sound"
+          style={{
+            backgroundImage: `url(${song?.imageUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="songInfo">
+            {setButton}
+            <div>
+              <p className="one loginText italic">{song?.title}</p>
+              <p className="two loginText bold">{song?.User?.username}</p>
             </div>
-          <div className='loginComments'>
-            <Comments formType={'loginPage1'} song={song} />
+          </div>
+          <div className="loginComments">
+            <Comments formType={"loginPage1"} song={song} />
           </div>
         </div>
       </div>
