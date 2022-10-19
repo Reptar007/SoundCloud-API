@@ -9,11 +9,9 @@ import { usePlayer } from '../../context/player'
 const Player = () => {
   const song = useSelector(state => state.songs.current)
 
-  const {isPlay, setIsPlay, isPaused, setIsPaused} = usePlayer()
+  const {setIsPlay, isPaused, setIsPaused} = usePlayer()
 
   const player = useRef()
-
-    console.log(song)
 
   if(isPaused === false) {
     if(song) {

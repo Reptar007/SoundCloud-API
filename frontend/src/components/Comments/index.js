@@ -1,4 +1,4 @@
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { getCommentsBySongIdThunkCreator } from '../../store/comments'
 import { useEffect, useState } from "react";
 
@@ -10,9 +10,11 @@ import { useHistory } from "react-router-dom";
 function Comments({ formType, song }) {
 
     const dispatch = useDispatch()
-
-
     const history = useHistory()
+
+    const user = useSelector(state => state.session.user)
+
+    console.log(user)
 
     const [body, setBody] = useState('')
     const [validateErrors, setValidateErrors] = useState([])
@@ -30,6 +32,12 @@ function Comments({ formType, song }) {
     const handleSubmit = async(e) => {
         e.preventDefault()
 
+
+        if(user === null) {
+          window.alert('Opps gotta sign-in to do that')
+          return
+        }
+        
         const payload = {
             body
         }

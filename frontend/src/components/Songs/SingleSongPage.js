@@ -20,7 +20,6 @@ function SingleSongPage () {
     const song = useSelector(getSongById(+songId))
     const comments = useSelector(getAllComments)
     const user = useSelector(state => state.session.user)
-    console.log(comments)
     
     useEffect(() => {
         dispatch(getCommentsBySongIdThunkCreator(+songId))
