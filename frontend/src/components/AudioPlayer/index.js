@@ -5,7 +5,6 @@ import './player.css'
 import { useRef } from 'react'
 import { useSelector } from "react-redux";
 import { usePlayer } from '../../context/player'
-import SingleSongPage from "../Songs/SingleSongPage";
 
 const Player = () => {
   const song = useSelector(state => state.songs.current)
@@ -14,6 +13,7 @@ const Player = () => {
 
   const player = useRef()
 
+    console.log(song)
 
   if(isPaused === false) {
     if(song) {
@@ -33,18 +33,31 @@ const Player = () => {
 
   return (
     <footer>
-      <AudioPlayer
-        src={song?.url}
-        ref={player}
-        onPlay={(e) => {
-          setIsPlay(true)
-          setIsPaused(false)
-        }}
-        onPause={e => {
-          setIsPlay(false)
-          setIsPaused(true)
-        }}
-      />
+      <div className="audiobar">
+        <AudioPlayer
+          showJumpControls={true}
+          layout="horizontal-reverse"
+          src={song?.url}
+          ref={player}
+          onPlay={(e) => {
+            setIsPlay(true)
+            setIsPaused(false)
+          }}
+          onPause={e => {
+            setIsPlay(false)
+            setIsPaused(true)
+          }}
+        />
+        <div className="audioInfo">
+          <div className="audioImg">
+            <img src={song.imageUrl} alt='' />
+          </div>
+          <div className="audiotext">
+            <p className="one">{song?.User?.username}</p>
+            <p className="two">{song.title}</p>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

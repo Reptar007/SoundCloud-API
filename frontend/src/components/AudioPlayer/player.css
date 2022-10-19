@@ -1,5 +1,84 @@
 footer {
+    border-top: 1px solid #cecece;
     position: fixed;
     bottom: 0;
     width:  100%;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    height: 49px;
+}
+
+.audiobar {
+    width: 1240px;
+    display: flex;
+}
+
+.audioInfo {
+    display: flex;
+    align-items: center;
+}
+
+.audioImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.audiotext > .one {
+    color: #999999;
+    font-size: small;
+}
+
+.audiotext > .two {
+    color: #666666;
+}
+
+
+.rhap_container {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    width: 896px;
+    display: flex;
+    justify-content: center;
+}
+
+.rhap_additional-controls {
+    display: none;
+}
+
+.rhap_main-controls-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 1.8;
+    color: black;
+}
+
+.rhap_volume-button {
+    display: flex;
+    align-items: center;
+    color: black;
+    scale: 1.8;
+}
+
+.rhap_volume-controls {
+    justify-content: center;
+}
+
+.rhap_volume-bar {
+    background: #FFDE59;
+    scale: 1.2;
+}
+
+.rhap_volume-indicator {
+    background: black;
+}
+
+.rhap_progress-filled {
+    background: #FFDE59;
+}
+
+.rhap_progress-indicator {
+    background: black;
 }
