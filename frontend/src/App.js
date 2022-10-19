@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
+import { getAllSongsThunkCreator } from "./store/songs";
 
 import Songs from "./components/Songs";
 import CreatSongFrom from "./components/Navigation/CreateSong";
@@ -20,6 +21,7 @@ function App() {
   
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getAllSongsThunkCreator())
   }, [dispatch]);
 
 

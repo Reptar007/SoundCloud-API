@@ -100,10 +100,10 @@ const SongCard = ({song, formType, user}) => {
     content = (
       <div className="songs">
         <div className="songsImage">
-          <img src={song.imageUrl} alt="" />
+          <img src={song?.imageUrl} alt="" />
         </div>
         <div className="sound" style={{ 
-          backgroundImage: `url(${song.imageUrl})`,
+          backgroundImage: `url(${song?.imageUrl})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -111,8 +111,8 @@ const SongCard = ({song, formType, user}) => {
             <div className="songInfo">
               {setButton}
               <div >
-                <p className="one loginText italic">{song.title}</p>
-                <p className="two loginText bold">{song.User.username}</p>
+                <p className="one loginText italic">{song?.title}</p>
+                <p className="two loginText bold">{song?.User?.username}</p>
               </div>
             </div>
           <div className='loginComments'>

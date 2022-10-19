@@ -4,6 +4,8 @@ import {useHistory} from 'react-router-dom'
 
 import { createASongThunkCreator } from '../../../store/songs'
 
+import './CreateSongForm.css'
+
 
 function CreateSongForm({ user }) {
     
@@ -16,6 +18,7 @@ function CreateSongForm({ user }) {
     const [imageUrl, setImageUrl] = useState()
     const [albumId, setAlbumId] = useState(null)
     const [validateErrors, setValidateErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
     useEffect(() => {
         const errors = []
@@ -27,6 +30,9 @@ function CreateSongForm({ user }) {
     const handleSubmit = async(e) => {
         
         e.preventDefault()
+        setHasSubmitted(true)
+
+        if(validateErrors.length > 0) return
 
         const payload = {
             title,
@@ -36,9 +42,11 @@ function CreateSongForm({ user }) {
             albumId,
         }
 
+
+
         let createdSong = await dispatch(createASongThunkCreator(payload))
         if(createdSong && validateErrors.length === 0) {
-            history.push('/')
+            history.push(`/${user.id}`)
         }
 
         setTitle('')
@@ -50,54 +58,52 @@ function CreateSongForm({ user }) {
     }
 
     return (
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {validateErrors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Title:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <label>
-          Audio Url:
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-        </label>
-        <label>
-          Image Url:
-          <input
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
-        </label>
-        <label>
-          Album Id:
-          <input
-            type="number"
-            value={albumId}
-            onChange={(e) => setAlbumId(e.target.value)}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <button type='submit' disabled={validateErrors.length}>Create Song</button>
-      </form>
+      <div className="bodycontainer center">
+        <div className="formContainer">
+          <form onSubmit={handleSubmit}>
+            <h1>Ready to create your hatchling?</h1>
+            <ul className='errors'>
+            {hasSubmitted && validateErrors.length > 0 && (
+               validateErrors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+                )))}
+                </ul>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title"
+              />
+              <input
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder='Audio URL'
+              />
+              <input
+                type="text"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder='Image URL'
+              />
+              <input
+                type="number"
+                value={albumId}
+                onChange={(e) => setAlbumId(e.target.value)}
+                placeholder='Album ID if you have one'
+              />
+              <input
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder='Description'
+              />
+            <button type="submit" >
+              Create Song
+            </button>
+          </form>
+        </div>
+      </div>
     );
 
 }
