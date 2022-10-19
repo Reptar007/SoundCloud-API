@@ -6,7 +6,7 @@ const songs = [
   {
     albumId: 1,
     userId: 1,
-    title: "Lofi Study",
+    title: "LoFi Study",
     description: "When you're getting your study on but still want to jam",
     url: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3",
     imageUrl: "https://i.imgur.com/VRl5ZdK.png",
@@ -74,6 +74,30 @@ const songs = [
     description: "chill vibeeess",
     url: "https://cdn.pixabay.com/audio/2022/02/15/audio_1e79dbf2b9.mp3",
     imageUrl: "https://i.imgur.com/UHVr6OP.png",
+  },
+  {
+    albumId: 4,
+    userId: 4,
+    title: "Powerful Stomp Rock",
+    description: "Rocky vibezzz",
+    url: "https://cdn.pixabay.com/audio/2022/07/03/audio_8938382846.mp3",
+    imageUrl: "https://i.imgur.com/VYHVBAP.png",
+  },
+  {
+    albumId: 4,
+    userId: 4,
+    title: "Country Rock and Roll",
+    description: "Country? Rock? idk?",
+    url: "https://cdn.pixabay.com/audio/2022/05/22/audio_d697fc0224.mp3",
+    imageUrl: "https://i.imgur.com/VtnkVW6.png",
+  },
+  {
+    albumId: 4,
+    userId: 4,
+    title: "LoFi Hip Hop",
+    description: "Country? Rock? idk?",
+    url: "https://cdn.pixabay.com/audio/2021/11/30/audio_b946bb80da.mp3",
+    imageUrl: "https://i.imgur.com/GxnvIQO.png",
   },
 ];
 

@@ -11,7 +11,7 @@ function UserLoginPage({ user }) {
 
 
     return (
-      <div className="bodycontainer padding">
+      <div className="bodycontainer padding overflow">
         <h1 className="loginTitle">Hear what other Quaksters are Hatching</h1>
         <div className="UserSongCard">
         {songs.map((song) => (

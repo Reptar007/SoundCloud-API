@@ -35,7 +35,8 @@
 
 .landingPage {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 10px;
     width: 100%;
     padding: 40px;
