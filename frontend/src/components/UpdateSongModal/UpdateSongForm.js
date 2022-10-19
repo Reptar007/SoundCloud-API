@@ -48,46 +48,37 @@ function UpdateSongForm({ song, setShowModal }) {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Title:
+      <h1>Update your little hatchling: </h1>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder='Title'
         />
-      </label>
-      <label>
-        Audio Url:
         <input
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
+          placeholder='Audio Url'
         />
-      </label>
-      <label>
-        Image Url:
         <input
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </label>
-      <label>
-        Album Id:
+          placeholder='Image Url'
+        />  
         <input
           type="number"
           value={albumId}
           onChange={(e) => setAlbumId(e.target.value)}
-        />
-      </label>
-      <label>
-        Description:
-        <textarea
+          placeholder='Album ID'
+        /> 
+        <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder='Description'
         />
-      </label>
       <button type="submit">Update Song</button>
     </form>
   );

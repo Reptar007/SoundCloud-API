@@ -14,6 +14,8 @@ const SongCard = ({song, formType, user}) => {
 
   const current = useSelector(state => state.songs.current)
 
+  const createdAt = new Date(song?.createdAt).toLocaleDateString();
+
   let setButton;
   if(!isPlay && current.url === song.url) {
     setButton = (
@@ -86,14 +88,30 @@ const SongCard = ({song, formType, user}) => {
     );
   } else if(formType === 'profile') {
     content = (
-      <div>
-        <h3>{song.title}</h3>
-        <img src={song.imageUrl} alt="" />
-        <button onClick={() => dispatch(removeSongThunkCreator(song.id))}>
-          delete
-        </button>
-        <UpdateFormModal song={song} />
-        {setButton}
+      <div className="songsProfile">
+        <div className="song">
+          <img src={song.imageUrl} alt="" />
+        </div>
+        <div className="soundProfile">
+          <div className="soundProfileLeft">
+            <div className="soundProfileSongInfo">
+              {setButton}
+              <div>
+                <p className="one loginText italic">{song?.title}</p>
+                <p className="two loginText bold">{song?.User?.username}</p>
+              </div>
+            </div>
+            <div className="profileButtons">
+              <button onClick={() => dispatch(removeSongThunkCreator(song.id))}>
+                delete
+              </button>
+              <UpdateFormModal song={song} />
+            </div>
+          </div>
+          <div className="soundProfileRight">
+            <p>{createdAt}</p>
+          </div>
+        </div>
       </div>
     );
   } else if (formType === "loginpage") {

@@ -1,0 +1,143 @@
+.profileBanner {
+    position: relative;
+}
+
+.profileBkImg {
+    position: relative;
+    z-index: 1;
+    height: 260px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 222, 89, 1) 100%);
+}
+
+.profileImage {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 222, 89, 1) 100%);
+    z-index: 2;
+}
+
+.profileDescription {
+    width: 40%;
+    height: 25%;
+    position: absolute;
+    top: 2rem;
+    left: 17rem;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.profileDescription > .one {
+    font-size: 1.7rem;
+    padding: .3rem;
+    width: fit-content;
+    background: rgba(0, 0, 0, 0.8);
+    margin-bottom: 5px;
+}
+
+.profileDescription > .two {
+    font-size: 1rem;
+    padding: .3rem;
+    width: fit-content;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.profileBody {
+    width: 100%;
+    padding: 10px 40px;
+    overflow: hidden;
+}
+
+.profileNavBar {
+    border-bottom: 1px solid #f2f2f2;
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.profileNavBar > h4  {
+    z-index: 4;
+    padding-top: 8px;
+    height: 105%;
+}
+
+.profileNavBar > h4:hover {
+    color: #FFDE59;
+    border-bottom: 2px solid #FFDE59;
+    cursor: default;
+}
+
+.profileSongs {
+    margin-top: 2rem;
+    border-right: 1px solid #f2f2f2;
+    width: 75%;
+    padding-top: 2rem;
+}
+
+.profileSongs > h2 {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, .8);
+}
+
+.profileSongCard {
+    width: 90%;
+    height: 160px;
+}
+
+.songsProfile {
+    margin: 30px 10px;
+    display: flex;
+    height: 160px;
+    width: 90%;
+}
+
+.soundProfile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.soundProfileLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.soundProfileSongInfo {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    height: 40%;
+    width: 100%;
+}
+
+
+.profileButtons {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10px;
+    height: 40%;
+    width: 30%;
+}
+
+.profileButtons button {
+    margin-right: 10px;
+    color: white;
+    background: #FFDE59;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.soundProfileRight > p {
+    color: #cdcdcd;
+}
