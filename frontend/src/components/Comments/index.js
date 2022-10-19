@@ -46,14 +46,16 @@ function Comments({ formType, song }) {
 
     if(formType === 'loginPage1') {
       context = (
-          <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
-          </form>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="loginCommentInput"
+            type="text"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            required
+            placeholder="Eggsplain your thoughts in the comments, but please, no fowl play "
+          />
+        </form>
       );
     } else {
 
@@ -62,9 +64,9 @@ function Comments({ formType, song }) {
 
 
     return (
-      <div>
+      <>
         {context}
-      </div>
+      </>
     );
 }
 

@@ -69,5 +69,25 @@
 
 .loginComments {
     position: absolute;
+    height: 25%;
     bottom: 0;
+    width: 100%;
+    padding: 8px;
+    border: .5px solid #d9d9d9;
+    background:  #f2f2f2;
+    display: flex;
+    justify-content: center;
+}
+
+.loginComments > form {
+    width: 100%;
+    display: flex;
+}
+
+.loginComments > form input {
+    width: 100%;
+    padding-left: 10px;
+    border: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
