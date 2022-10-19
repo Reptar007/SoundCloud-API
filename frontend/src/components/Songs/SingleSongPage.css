@@ -30,6 +30,11 @@
     z-index: 2;
 }
 
+.singleImage > img {
+    height: 100%;
+    width: 100%;
+}
+
 .singlePlayDescription {
     width: 40%;
     height: 25%;
