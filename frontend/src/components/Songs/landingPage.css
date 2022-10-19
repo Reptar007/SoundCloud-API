@@ -1,8 +1,9 @@
 .bodycontainer {
     margin: auto;
     width: 1240px;
-    height: 95%;
+    height: 100%;
     background: white;
+    padding-bottom: 40px;
 }
 
 .banner {
@@ -37,6 +38,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
     gap: 10px;
     width: 100%;
     padding: 40px;
