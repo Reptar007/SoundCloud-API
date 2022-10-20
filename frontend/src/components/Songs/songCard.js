@@ -1,18 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
-import { removeSongThunkCreator } from "../../store/songs";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { removeSongThunkCreator, getAllSongsThunkCreator, getSongById } from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
 import { NavLink } from "react-router-dom";
 import { currentSong } from "../../store/songs";
 import { usePlayer } from "../../context/player";
 import Comments from '../Comments'
+import { useEffect, useState } from "react";
 
 
 
-const SongCard = ({song, formType, user}) => {
+const SongCard = ({song, formType, user }) => {
   const dispatch = useDispatch()
   const {isPlay, setIsPlay, setIsPaused} = usePlayer()
 
+  
+  useEffect(() => {
+    dispatch(getAllSongsThunkCreator())
+  }, [dispatch])
+  
   const current = useSelector(state => state.songs.current)
+
+ 
 
   const createdAt = new Date(song?.createdAt).toLocaleDateString();
 
@@ -76,13 +84,13 @@ const SongCard = ({song, formType, user}) => {
   if(formType === 'normal') {
     content = (
       <div className="songCard">
-        <NavLink  className='songTitle' to={`songs/${song.id}`}>
-          <img src={song.imageUrl} alt="" />
+        <NavLink  className='songTitle' to={`songs/${song?.id}`}>
+          <img src={song?.imageUrl} alt="" />
         </NavLink>
         {setButton}
         <div className="descriptionSong">
-          <p className="one" >{song.title}</p>
-          <p className="two" >{song.User.username}</p>
+          <p className="one" >{song?.title}</p>
+          <p className="two" >{song?.User?.username}</p>
         </div>
       </div>
     );
@@ -90,7 +98,7 @@ const SongCard = ({song, formType, user}) => {
     content = (
       <div className="songsProfile">
         <div className="song">
-          <img src={song.imageUrl} alt="" />
+          <img src={song?.imageUrl} alt="" />
         </div>
         <div className="soundProfile">
           <div className="soundProfileLeft">
@@ -98,11 +106,11 @@ const SongCard = ({song, formType, user}) => {
               {setButton}
               <div>
                 <p className="one loginText italic">{song?.title}</p>
-                <p className="two loginText bold">{song?.User?.username}</p>
+                <p className="two loginText bold">{user.username}</p>
               </div>
             </div>
             <div className="profileButtons">
-              <button onClick={() => dispatch(removeSongThunkCreator(song.id))}>
+              <button onClick={() => dispatch(removeSongThunkCreator(song?.id))}>
                 delete
               </button>
               <UpdateFormModal song={song} />
@@ -118,7 +126,7 @@ const SongCard = ({song, formType, user}) => {
     content = (
       <div className="songs">
         <div className="songsImage">
-          <NavLink className="song" to={`songs/${song.id}`}>
+          <NavLink className="song" to={`songs/${song?.id}`}>
             <img src={song.imageUrl} alt="" />
           </NavLink>
         </div>

@@ -14,8 +14,6 @@ function Comments({ formType, song }) {
 
     const user = useSelector(state => state.session.user)
 
-    console.log(user)
-
     const [body, setBody] = useState('')
     const [validateErrors, setValidateErrors] = useState([])
 
