@@ -19,11 +19,14 @@ function UpdateSongForm({ song, setShowModal }) {
   useEffect(() => {
     const errors = {};
     if (title.length === 0) errors.title = "Song title is required";
+    if (title.length > 250)
+      errors.title = "Song title can't be longer than 250 characters";
     if (url.length === 0) errors.url = "Audio is required";
+    if (albumId < 0) errors.albumId = "Album ID can't be negative";
     if (description.length > 250)
-      errors.description = "Description can't be longer than 250 character";
+      errors.description = "Description can't be longer than 250 characters";
     setValidateErrors(errors);
-  }, [title, url, description]);
+  }, [title, url, description, albumId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +102,18 @@ function UpdateSongForm({ song, setShowModal }) {
         value={albumId}
         onChange={(e) => setAlbumId(e.target.value)}
         placeholder="Album ID"
+        min={0}
       />
+      {hasSubmitted && validateErrors.albumId && (
+        <li className="errors">
+          <img
+            className="errorDuck"
+            src="https://i.imgur.com/7OuSWd1.png"
+            alt=""
+          />{" "}
+          {validateErrors.albumId}
+        </li>
+      )}
       <input
         type="text"
         value={description}
