@@ -66,9 +66,14 @@
     list-style: none;
 }
 
-
 .errorDuck {
-    width: 15px;
-    height: 15px;
+    max-width: 15px;
+    max-height: 15px;
     border-radius: 50%;
+}
+
+.commentError {
+    position: absolute;
+    top: 2.8rem;
+    width: fit-content;
 }

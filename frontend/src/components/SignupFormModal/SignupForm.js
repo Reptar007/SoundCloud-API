@@ -45,7 +45,7 @@ function SignupForm( { setShowModal }) {
     
     let goodSignUp = await dispatch(sessionActions.signup(playload))
     if(goodSignUp && Object.values(validateErrors).length === 0) {
-      history.push('/')
+      history.push('/logged-in')
     }
     
     setEmail('')
@@ -61,7 +61,7 @@ function SignupForm( { setShowModal }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {hasSubmitted ? <h2>Opps you done qucked up</h2> :
+        {hasSubmitted ? <h2>Opps you done Qucked Up</h2> :
         <h1> Sign Up Form </h1>
         }
         <input

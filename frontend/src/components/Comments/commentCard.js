@@ -10,6 +10,8 @@ function CommentCard ({ comment, user}) {
         removed = true
     }
 
+    
+
     const createdAt = new Date(comment?.createdAt).toLocaleDateString()
 
       return (
@@ -20,8 +22,10 @@ function CommentCard ({ comment, user}) {
             </div>
             <div className='commentText'>
               <p className='one italic'>{user?.username}</p>
-              <p className='two'>{comment?.body}</p>
             </div>
+          </div>
+          <div className='commentMiddle'>
+              <p className='two'>{comment?.body}</p>
           </div>
           <div className='commentRight'>
             <p>{createdAt}</p>

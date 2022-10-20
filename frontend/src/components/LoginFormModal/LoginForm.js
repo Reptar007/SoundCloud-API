@@ -1,75 +1,73 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom'
+import { Redirect ,useHistory } from 'react-router-dom'
 
 function LoginForm() {
   const dispatch = useDispatch();
   const history = useHistory()
   const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("")
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const user = useSelector(state => state.session.user)
+ const sessionUser = useSelector((state) => state.session.user);
 
+ if (sessionUser) return <Redirect to="/logged-in" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const userErrors = []
+    setHasSubmitted(true)
 
-
-    if(userErrors.length > 0) return
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    let newUser = await dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
-        console.log('hello from .catch ', data)
-        if (data && data.errors) setErrors(data.errors);
+        if (data && data.errors) {
+          setErrors(data.errors)
+        }
       }
     );
-  
 
-  // if(response.errors) {
-  //     response.errors.forEach(e => {
-  //       userErrors.push(e)
-  //     })  
-  // }
-  // setErrors(userErrors)
-
-  
-  // // history.push('/logged-in')
-  // return console.log(response)
+    if(newUser) history.push('/logged-in')
 };
-
-console.log('this is my errors', errors)
+  console.log('this is my errors: ' , errors)
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
       <h1>Login</h1>
-        <input
-          type="text"
-          placeholder="Username"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
+      <input
+        type="text"
+        placeholder="Username"
+        value={credential}
+        onChange={(e) => setCredential(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         />
+        {hasSubmitted && errors.length > 0 && (
+            errors.map((error, idx) => (
+            <li className="errors" key={idx}>
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {error}
+            </li>
+          )))}   
       <button type="submit">Log In</button>
-      <button 
+      <button
         type="submit"
         onClick={() => {
           setCredential("Demo-lition");
-          setPassword("password")
+          setPassword("password");
         }}
-      > Demo User</button>
+        >
+        Demo User
+      </button>
     </form>
   );
 }

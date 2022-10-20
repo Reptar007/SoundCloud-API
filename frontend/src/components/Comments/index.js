@@ -16,6 +16,7 @@ function Comments({ formType, song }) {
 
     const [body, setBody] = useState('')
     const [validateErrors, setValidateErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
     useEffect(() => {
         dispatch(getCommentsBySongIdThunkCreator(song.id))
@@ -24,17 +25,20 @@ function Comments({ formType, song }) {
     useEffect(() => {
         const errors = []
         if(body.length === 0) errors.push("Comment body text is required");
+        if(body.length > 250) errors.push('comments can only be 250 characters long')
         setValidateErrors(errors)
     }, [body])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-
+        setHasSubmitted(true)
 
         if(user === null) {
           window.alert('Opps gotta sign-in to do that')
           return
         }
+
+        if(validateErrors.length > 0) return
         
         const payload = {
             body
@@ -46,6 +50,8 @@ function Comments({ formType, song }) {
         }
 
         setBody('')
+        setValidateErrors([])
+        setHasSubmitted(false)
     }
 
     let context;
@@ -58,7 +64,6 @@ function Comments({ formType, song }) {
             type="text"
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            required
             placeholder="Eggsplain your thoughts in the comments, but please, no fowl play "
           />
         </form>
@@ -71,9 +76,22 @@ function Comments({ formType, song }) {
             type="text"
             value={body}
             onChange={(e) => setBody(e.target.value)}
-            required
             placeholder="Eggsplain your thoughts in the comments, but please, no fowl play "
           />
+          <div className="commentError">
+            {hasSubmitted &&
+              validateErrors.length > 0 &&
+              validateErrors.map((error, idx) => (
+                <li className="errors" key={idx}>
+                  <img
+                    className="errorDuck"
+                    src="https://i.imgur.com/7OuSWd1.png"
+                    alt=""
+                  />{" "}
+                  {error}
+                </li>
+              ))}
+          </div>
         </form>
       );
     }

@@ -28,50 +28,33 @@ router.get("/", restoreUser, (req, res) => {
   } else return res.json(null);
 });
 
-// router.post("/", validateLogin, async (req, res, next) => {
-//   const { credential, password } = req.body;
+router.post("/", validateLogin, async (req, res, next) => {
+  const { credential, password } = req.body;
 
-//   const user = await User.login({ credential, password });
+  const user = await User.login({ credential, password });
 
-//   if (!user) {
-//     const err = new Error("Login failed");
-//     err.status = 401;
-//     err.title = "Login failed";
-//     err.errors = ["The provided credentials were invalid."];
-//     return next(err);
-//   }
+  if (!user) {
+    const err = new Error("Login failed");
+    err.status = 401;
+    err.title = "Login failed";
+    err.errors = ["The provided credentials were invalid."];
+    return next(err);
+  }
 
-//   const token = await setTokenCookie(res, user);
+  const token = await setTokenCookie(res, user);
 
-//   const body = {
-//     id: user.id,
-//     firstName: user.firstName,
-//     lastName: user.lastName,
-//     email: user.email,
-//     username: user.username,
-//     token
-//   }
+  const body = {
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    username: user.username,
+    token
+  }
 
-//   return res.json(body);
-// });
-
-
-router.post('/', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
-    const user = await User.login({ credential, password });
-    if (!user) {
-      console.log(' --------------- in the !user block ---------------')
-        res.status(401);
-        return res.json({
-            "message": "Invalid credentials",
-            "statusCode": 401
-        });
-    }
-    let resObj = user.toJSON();
-    let token = await setTokenCookie(res, user);
-    resObj.token = token;
-    return res.json(resObj);
+  return res.json(body);
 });
+
 
 router.delete("/", (_req, res) => {
   res.clearCookie("token");
