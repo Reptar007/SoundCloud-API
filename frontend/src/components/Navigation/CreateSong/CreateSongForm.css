@@ -62,12 +62,9 @@
 }
 .errors {
     color: red;
-    padding: 40px;
+    list-style: none;
 }
 
-.errors li {
-   list-style: none;
-}
 
 .errorDuck {
     width: 30px;

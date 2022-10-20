@@ -98,14 +98,14 @@ function SignupForm( { setShowModal }) {
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm Password"
         />
-        <ul className="errors">
+        
           {hasSubmitted && validateErrors.length > 0 && (
             <h2>Opps you done quacked up!</h2>
           )}
           {hasSubmitted &&
             validateErrors.length > 0 &&
             validateErrors.map((error, idx) => (
-              <li key={idx}>
+              <li className='errors'key={idx}>
                 <img
                   className="errorDuck"
                   src="https://i.imgur.com/7OuSWd1.png"
@@ -114,7 +114,7 @@ function SignupForm( { setShowModal }) {
                 {error}
               </li>
             ))}
-        </ul>
+    
         <button type="submit">Sign Up</button>
       </form>
     </>
