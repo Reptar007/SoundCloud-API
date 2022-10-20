@@ -143,7 +143,7 @@
 .commets {
     margin-top: .5rem;
     width: 100%;
-    height: 60px;
+    height: 125px;
     max-height: fit-content;
     display: flex;
     align-items: center;
@@ -175,11 +175,13 @@
     height: 60px;
     display: flex;
     justify-content: flex-start;
+    
 }
 
 .commentMiddle > .two {
     width: 100%;
     word-wrap: break-word;
+    height: 100%;
 }
 
 .commentText {

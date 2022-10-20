@@ -70,11 +70,6 @@
     height: 105%;
 }
 
-.profileNavBar > h4:hover {
-    color: #FFDE59;
-    border-bottom: 2px solid #FFDE59;
-    cursor: default;
-}
 
 .profileSongs {
     margin-top: 2rem;
