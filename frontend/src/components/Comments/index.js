@@ -66,6 +66,13 @@ function Comments({ formType, song }) {
             onChange={(e) => setBody(e.target.value)}
             placeholder="Eggsplain your thoughts in the comments, but please, no fowl play "
           />
+          {hasSubmitted &&
+            validateErrors.length > 0 &&
+            validateErrors.map((error, idx) => (
+              <li className="errors" key={idx}>
+                {error}
+              </li>
+            ))}
         </form>
       );
     } else if(formType === 'singlesong') {

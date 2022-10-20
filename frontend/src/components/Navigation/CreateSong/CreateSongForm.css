@@ -75,3 +75,9 @@
     top: 2.8rem;
     width: fit-content;
 }
+
+.errorLandingDuck {
+    position: absolute;
+    top: 2.5rem;
+    width: fit-content;
+}
