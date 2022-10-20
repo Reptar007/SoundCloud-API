@@ -61,13 +61,14 @@
     background: rgba(255, 222, 89, 0.8);
 }
 .errors {
+    font-size: 12px;
     color: red;
     list-style: none;
 }
 
 
 .errorDuck {
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
 }

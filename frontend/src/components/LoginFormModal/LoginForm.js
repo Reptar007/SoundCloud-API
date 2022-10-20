@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom'
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const history = useHistory()
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -11,32 +13,32 @@ function LoginForm() {
   const user = useSelector(state => state.session.user)
 
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const userErrors = []
 
 
     if(userErrors.length > 0) return
     setErrors([]);
-    const response = await dispatch(sessionActions.login({ credential, password })).catch(
+    return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
+        console.log('hello from .catch ', data)
         if (data && data.errors) setErrors(data.errors);
-        console.log('hello from .catch ', errors)
       }
     );
   
 
-  if(response.errors) {
-      response.errors.forEach(e => {
-        userErrors.push(e)
-      })  
-  }
-  setErrors(userErrors)
+  // if(response.errors) {
+  //     response.errors.forEach(e => {
+  //       userErrors.push(e)
+  //     })  
+  // }
+  // setErrors(userErrors)
 
   
-  
-  return console.log(response)
+  // // history.push('/logged-in')
+  // return console.log(response)
 };
 
 console.log('this is my errors', errors)

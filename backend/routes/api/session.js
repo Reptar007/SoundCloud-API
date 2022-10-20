@@ -60,6 +60,7 @@ router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
     const user = await User.login({ credential, password });
     if (!user) {
+      console.log(' --------------- in the !user block ---------------')
         res.status(401);
         return res.json({
             "message": "Invalid credentials",

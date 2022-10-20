@@ -32,10 +32,12 @@ export const login = (user) => async (dispatch) => {
       password,
     }),
   });
- 
-  const data = await response.json();
-  dispatch(setUser(data));
-  return data;  
+ if(response.ok) {
+   const data = await response.json();
+   console.log('---------this is my response---------', data)
+   dispatch(setUser(data));
+   return data;  
+ } 
 };
 
 export const signup = (user) => async (dispatch) => {
