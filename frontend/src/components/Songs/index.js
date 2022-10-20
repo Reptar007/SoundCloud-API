@@ -12,8 +12,11 @@ function Songs() {
         dispatch(getAllSongsThunkCreator())
     }, [dispatch])
     
-    const songs = useSelector(getAllSongs)
-    const songsArr = songs.slice(songs.length- 12, songs.length)
+    let songs = useSelector(getAllSongs)
+
+    if(songs.length > 12) {
+      songs = songs.slice(songs.length - 12, songs.length)
+    } 
     
     return (
       <div className='bodycontainer'>
@@ -24,7 +27,7 @@ function Songs() {
           <h1>Ready to become a <span className='quacksterW'>Quackster?</span></h1>
         </div>
         <div className="landingPage">
-          {songsArr.map((song) => (
+          {songs.map((song) => (
             <SongCard key={song.id} song={song} formType={"normal"} />
           ))}
         </div>
