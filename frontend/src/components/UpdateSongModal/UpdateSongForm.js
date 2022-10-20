@@ -41,7 +41,7 @@ function UpdateSongForm({ song, setShowModal }) {
     
     let updatedSong = await dispatch(updateSongThunkCreator(payload, song.id));
 
-    if (updatedSong && validateErrors.length === 0) {
+    if (updatedSong && Object.values(validateErrors).length === 0) {
       setShowModal(false)
     }
 
