@@ -1,11 +1,11 @@
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { removeSongThunkCreator, getAllSongsThunkCreator, getSongById } from "../../store/songs";
+import { useDispatch, useSelector} from "react-redux";
+import { removeSongThunkCreator, getAllSongsThunkCreator} from "../../store/songs";
 import UpdateFormModal from "../UpdateSongModal";
 import { NavLink } from "react-router-dom";
 import { currentSong } from "../../store/songs";
 import { usePlayer } from "../../context/player";
 import Comments from '../Comments'
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 
 
@@ -19,9 +19,6 @@ const SongCard = ({song, formType, user }) => {
   }, [dispatch])
   
   const current = useSelector(state => state.songs.current)
-
- 
-
   const createdAt = new Date(song?.createdAt).toLocaleDateString();
 
   let setButton;

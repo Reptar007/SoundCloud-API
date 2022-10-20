@@ -16,8 +16,6 @@ function LoginForm() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    history.push(`/logged-in`)
 
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).catch(
@@ -52,7 +50,7 @@ function LoginForm() {
         />
       <button type="submit">Log In</button>
       <button
-        onClick={() => {
+        onClick={() =>{
           setCredential("Demo-lition")
           setPassword("password")
         }}
