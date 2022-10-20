@@ -1,9 +1,10 @@
 .bodycontainer {
     margin: auto;
     width: 1240px;
-    height: 100%;
     background: white;
-    padding-bottom: 40px;
+    height: fit-content;
+    min-height: 100%;
+    padding-bottom: 100px;
 }
 
 .banner {

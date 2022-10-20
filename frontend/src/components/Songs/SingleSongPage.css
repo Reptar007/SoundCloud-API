@@ -24,7 +24,7 @@
 .singleImage {
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    right: 2rem;
     max-height: 340px;
     max-width: 340px;
     z-index: 2;
