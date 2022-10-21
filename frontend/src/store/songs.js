@@ -71,12 +71,13 @@ export const createASongThunkCreator = (payload) => async dispatch => {
 
 
 export const removeSongThunkCreator = (songId) => async dispatch => {
-  
     const res = await csrfFetch(`/api/songs/${songId}`, {
         method: 'DELETE'
     })
     
     if(res.ok) {
+        const data = res.json()
+        console.log('this is my data ', data)
         dispatch(remove(songId))
     }
 }
