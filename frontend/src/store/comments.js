@@ -37,6 +37,7 @@ export const getCommentsBySongIdThunkCreator = id => async dispatch => {
 
     if(res.ok) {
         const comments = await res.json()
+        console.log('thit is my comments', comments)
         dispatch(get(comments))
         return comments
     }

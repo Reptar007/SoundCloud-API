@@ -196,10 +196,19 @@
     color: black;
 }
 
-.commentBtn {
-    background: #FFDE59;
+.commentBtn1 {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.commentBtn1 > i {
+    /* background: #FFDE59;
     color:  white;
     border: none;
     border-radius: 5px;
-    width: 70%;
+    width: 70%; */
+    width: 100%;
+    color: #FFDE59;
 }
+

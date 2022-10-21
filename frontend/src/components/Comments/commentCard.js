@@ -1,5 +1,7 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { deleteCommentByUserThunkCreator } from '../../store/comments'
+import { useEffect } from 'react'
+
 
 function CommentCard ({ comment, user}) {
     const dispatch = useDispatch()
@@ -10,8 +12,7 @@ function CommentCard ({ comment, user}) {
         removed = true
     }
 
-    
-
+  
     const createdAt = new Date(comment?.createdAt).toLocaleDateString()
 
       return (
@@ -21,7 +22,7 @@ function CommentCard ({ comment, user}) {
               <img src='https://i.imgur.com/Ivu8gkZ.png' alt='' />
             </div>
             <div className='commentText'>
-              <p className='one italic'>{user?.username}</p>
+              <p className='one italic'>{comment?.User?.username}</p>
             </div>
           </div>
           <div className='commentMiddle'>
@@ -30,7 +31,9 @@ function CommentCard ({ comment, user}) {
           <div className='commentRight'>
             <p>{createdAt}</p>
             {removed &&
-              <button className='commentBtn' onClick={() => dispatch(deleteCommentByUserThunkCreator(comment.id))}>delete</button>
+              <button className='commentBtn1' onClick={() => dispatch(deleteCommentByUserThunkCreator(comment.id))}>
+                <i className='fas fa-regular fa-trash'/>
+              </button>
             }
           </div>
         </div>

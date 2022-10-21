@@ -23,7 +23,7 @@ function SingleSongPage () {
     
     useEffect(() => {
         dispatch(getCommentsBySongIdThunkCreator(+songId))
-    }, [dispatch,songId])
+    }, [dispatch,songId, comments.length])
     
     const current = useSelector((state) => state.songs.current);
 
