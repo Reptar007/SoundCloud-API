@@ -7,7 +7,7 @@ function UpdateFormModal({ song }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Update</button>
+      <button onClick={() => setShowModal(true)}><i className="fas fa-solid fa-pen" /></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <UpdateSongForm song={song} setShowModal={setShowModal}/>

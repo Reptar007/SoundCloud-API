@@ -107,10 +107,12 @@ const SongCard = ({song, formType, user }) => {
               </div>
             </div>
             <div className="profileButtons">
-              <button onClick={() => dispatch(removeSongThunkCreator(song?.id))}>
-                delete
-              </button>
               <UpdateFormModal song={song} />
+              <button
+                onClick={() => dispatch(removeSongThunkCreator(song?.id))}
+              >
+                <i className="fas fa-regular fa-trash" />
+              </button>
             </div>
           </div>
           <div className="soundProfileRight">
