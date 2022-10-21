@@ -97,7 +97,7 @@ function UpdateSongForm({ song, setShowModal }) {
         onChange={(e) => setImageUrl(e.target.value)}
         placeholder="Image Url"
       />
-      <input
+      {/* <input
         type="number"
         value={albumId}
         onChange={(e) => setAlbumId(e.target.value)}
@@ -113,7 +113,7 @@ function UpdateSongForm({ song, setShowModal }) {
           />{" "}
           {validateErrors.albumId}
         </li>
-      )}
+      )} */}
       <input
         type="text"
         value={description}

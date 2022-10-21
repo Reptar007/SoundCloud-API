@@ -16,7 +16,7 @@ function CreateSongForm({ user }) {
     const [description, setDescription] = useState('')
     const [url, setUrl] = useState('')
     const [imageUrl, setImageUrl] = useState()
-    const [albumId, setAlbumId] = useState(null)
+    // const [albumId, setAlbumId] = useState(null)
     const [validateErrors, setValidateErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -25,10 +25,10 @@ function CreateSongForm({ user }) {
         if(title.length === 0) errors.title = "Song title is required"
         if(title.length > 250) errors.title = "Song title can't be longer than 250 characters"
         if(url.length === 0) errors.url = "Audio is required"
-        if(albumId < 0) errors.albumId = "Album ID can't be negative"
+        // if(albumId < 0) errors.albumId = "Album ID can't be negative"
         if(description.length > 250 ) errors.description = "Description can't be longer than 250 characters"
         setValidateErrors(errors)
-    },[title, url,description,albumId])
+    },[title, url,description])
     
     const handleSubmit = async(e) => {
         
@@ -42,7 +42,7 @@ function CreateSongForm({ user }) {
             description,
             url,
             imageUrl,
-            albumId,
+            albumId: null
         }
 
         let createdSong = await dispatch(createASongThunkCreator(payload))
@@ -54,7 +54,7 @@ function CreateSongForm({ user }) {
         setDescription('')
         setUrl('')
         setImageUrl('')
-        setAlbumId('')
+        // setAlbumId('')
         setValidateErrors({})
     }
 
@@ -101,7 +101,7 @@ function CreateSongForm({ user }) {
               onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Image URL"
             />
-            <input
+            {/* <input
               type="number"
               value={albumId}
               onChange={(e) => setAlbumId(e.target.value)}
@@ -116,7 +116,7 @@ function CreateSongForm({ user }) {
                 />{" "}
                 {validateErrors.albumId}
               </li>
-            )}
+            )} */}
             <input
               type="text"
               value={description}
