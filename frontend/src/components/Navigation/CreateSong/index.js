@@ -23,7 +23,7 @@ function CreateSongForm({ user }) {
     useEffect(() => {
         const errors = {}
         if(title.length === 0) errors.title = "Song title is required"
-        if(title.length > 250) errors.title = "Song title can't be longer than 250 characters"
+        if(title.length > 100) errors.title = "Song title can't be longer than 100 characters"
         if(url.length === 0) errors.url = "Audio is required"
         // if(albumId < 0) errors.albumId = "Album ID can't be negative"
         if(description.length > 250 ) errors.description = "Description can't be longer than 250 characters"

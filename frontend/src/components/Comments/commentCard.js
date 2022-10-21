@@ -1,6 +1,6 @@
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteCommentByUserThunkCreator } from '../../store/comments'
-import { useEffect } from 'react'
+
 
 
 function CommentCard ({ comment, user}) {

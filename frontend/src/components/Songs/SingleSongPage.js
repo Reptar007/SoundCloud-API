@@ -89,41 +89,43 @@ function SingleSongPage () {
     
     return (
       <div className="bodycontainer">
-        <div className="singlePage">
-          <div className="borderBkimage">
-            <div
-              className="singleBkImage"
-              style={{
-                backgroundImage: `url(${song?.imageUrl})`,
-              }}
-            >
-              <div className="singleImage">
-                <img src={song.imageUrl} alt="" />
-              </div>
-              <div className="singlePlayDescription">
-                {setButton}
-                <div className="singleDescriptionSong">
-                  <p className="one bold">{song?.title}</p>
-                  <p className="two italic">{song?.User?.username}</p>
+        <div className='minicontainer flexstart'>
+          <div className="singlePage">
+            <div className="borderBkimage">
+              <div
+                className="singleBkImage"
+                style={{
+                  backgroundImage: `url(${song?.imageUrl})`,
+                }}
+              >
+                <div className="singleImage">
+                  <img src={song.imageUrl} alt="" />
+                </div>
+                <div className="singlePlayDescription">
+                  {setButton}
+                  <div className="singleDescriptionSong">
+                    <p className="one bold">{song?.title}</p>
+                    <p className="two italic">{song?.User?.username}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="singleComments">
-            <div className="singleCommentBar">
-              <img src="https://i.imgur.com/i9i0UBU.png" alt="" />
-              <div className="singleCommentInput">
-                <Comments formType={"singlesong"} song={song} />
+            <div className="singleComments">
+              <div className="singleCommentBar">
+                <img src="https://i.imgur.com/i9i0UBU.png" alt="" />
+                <div className="singleCommentInput">
+                  <Comments formType={"singlesong"} song={song} />
+                </div>
               </div>
-            </div>
-            <div className="singleAllComments">
-              <div className='commentstext'>
-                <i className="fas fa-solid fa-comment" />
-                <p>{comments.length} comments</p>
+              <div className="singleAllComments">
+                <div className='commentstext'>
+                  <i className="fas fa-solid fa-comment" />
+                  <p>{comments.length} comments</p>
+                </div>
+                {comments?.map((comment) => (
+                  <CommentCard key={comment.id} comment={comment} user={user} />
+                ))}
               </div>
-              {comments?.map((comment) => (
-                <CommentCard key={comment.id} comment={comment} user={user} />
-              ))}
             </div>
           </div>
         </div>

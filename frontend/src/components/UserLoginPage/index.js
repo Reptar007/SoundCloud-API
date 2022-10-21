@@ -11,12 +11,14 @@ function UserLoginPage({ user }) {
 
 
     return (
-      <div className="bodycontainer padding overflow">
-        <h1 className="loginTitle">Hear what other Quaksters are Hatching</h1>
-        <div className="UserSongCard">
-        {songs.map((song) => (
-          <SongCard key={song.id} formType={"loginpage"} user={user} song={song} />
-        ))}
+      <div className="bodycontainer">
+        <div className="minicontainer paddingLeft paddingTop">
+          <h1 className="loginTitle">Hear what other Quaksters are Hatching</h1>
+          <div className="UserSongCard">
+          {songs.map((song) => (
+            <SongCard key={song.id} formType={"loginpage"} user={user} song={song} />
+          ))}
+          </div>
         </div>
       </div>
     );
