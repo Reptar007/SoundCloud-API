@@ -116,6 +116,10 @@
     cursor: pointer;
 }
 
+.btn:has(> .fa-pause) {
+    display: block;
+}
+
 .songCard>button>i {
     color: white;
     scale: 1.5;
