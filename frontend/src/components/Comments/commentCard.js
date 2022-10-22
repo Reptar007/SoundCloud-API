@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { deleteCommentByUserThunkCreator } from '../../store/comments'
-
+import moment from 'moment'
 
 
 function CommentCard ({ comment, user}) {
@@ -11,9 +11,6 @@ function CommentCard ({ comment, user}) {
     if (user?.id === comment.userId) {
         removed = true
     }
-
-  
-    const createdAt = new Date(comment?.createdAt).toLocaleDateString()
 
       return (
         <div className='commets'>
@@ -29,7 +26,7 @@ function CommentCard ({ comment, user}) {
               <p className='two'>{comment?.body}</p>
           </div>
           <div className='commentRight'>
-            <p>{createdAt}</p>
+            <p>{moment(new Date(comment?.createdAt)).fromNow()}</p>
             {removed &&
               <button className='commentBtn1' onClick={() => dispatch(deleteCommentByUserThunkCreator(comment.id))}>
                 <i className='fas fa-regular fa-trash'/>

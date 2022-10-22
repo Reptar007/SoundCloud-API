@@ -2,8 +2,6 @@ import { useDispatch, useSelector} from "react-redux";
 import { getCommentsBySongIdThunkCreator } from '../../store/comments'
 import { useEffect, useState } from "react";
 
-
-
 import { postCommentBySongIdThunkCreator } from "../../store/comments"
 import { useHistory } from "react-router-dom";
 
@@ -35,6 +33,7 @@ function Comments({ formType, song }) {
 
         if(user === null) {
           window.alert('Opps gotta sign-in to do that')
+          setValidateErrors([])
           return
         }
 

@@ -101,23 +101,16 @@ function UpdateSongForm({ song, setShowModal }) {
         onChange={(e) => setImageUrl(e.target.value)}
         placeholder="Image Url"
       />
-      {/* <input
-        type="number"
-        value={albumId}
-        onChange={(e) => setAlbumId(e.target.value)}
-        placeholder="Album ID"
-        min={0}
-      />
-      {hasSubmitted && validateErrors.albumId && (
+      {hasSubmitted && validateErrors.imageUrl && (
         <li className="errors">
           <img
             className="errorDuck"
             src="https://i.imgur.com/7OuSWd1.png"
             alt=""
           />{" "}
-          {validateErrors.albumId}
+          {validateErrors.imageUrl}
         </li>
-      )} */}
+      )}
       <input
         type="text"
         value={description}

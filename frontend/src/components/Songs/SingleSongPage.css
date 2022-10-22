@@ -170,8 +170,13 @@
 
 .commentRight {
     display: flex;
-    align-items: flex-end;
     flex-direction: column;
+    align-items: flex-end;
+    gap: 10px 0;
+}
+.commentRight > p {
+    color: #999999;
+    font-size: small;
 }
 
 .commentMiddle {

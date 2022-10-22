@@ -6,6 +6,7 @@ import { currentSong } from "../../store/songs";
 import { usePlayer } from "../../context/player";
 import Comments from '../Comments'
 import { useEffect} from "react";
+import moment from "moment";
 
 
 
@@ -13,13 +14,14 @@ const SongCard = ({song, formType, user }) => {
   const dispatch = useDispatch()
   const {isPlay, setIsPlay, setIsPaused} = usePlayer()
 
+  console.log(moment(new Date(song?.createdAt)).fromNow())
   
   useEffect(() => {
     dispatch(getAllSongsThunkCreator())
   }, [dispatch])
   
   const current = useSelector(state => state.songs.current)
-  const createdAt = new Date(song?.createdAt).toLocaleDateString();
+
 
   let setButton;
   if(!isPlay && current.url === song.url) {
@@ -116,7 +118,7 @@ const SongCard = ({song, formType, user }) => {
             </div>
           </div>
           <div className="soundProfileRight">
-            <p>{createdAt}</p>
+            <p>{moment(new Date(song?.createdAt)).fromNow()}</p>
           </div>
         </div>
       </div>

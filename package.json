@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Reptar007/SoundCloud-API#readme",
   "dependencies": {
+    "moment": "^2.29.4",
     "pg": "^8.8.0",
     "react-h5-audio-player": "^3.8.6",
     "redux-persist": "^6.0.0"
