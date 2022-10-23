@@ -1,7 +1,7 @@
 # SoundCloud-API
 ## Database Schema Design
 
-![soundcloud-dbdiagram](./assets/images/soundcloud_dbdiagram.png)
+![soundcloud-dbdiagram](../assets/images/soundcloud_dbdiagram.png)
 
 ## API Documentation
 
