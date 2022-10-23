@@ -15,13 +15,13 @@ Duckir Beats is a full-stack application that is based on SoundCloud. In Duckie 
   2. created a new folder named `.env` and copy and paste from the `.env.example` file
   3. run `npm start` to started the backend server
   4. `cd ..` to return back to root folder
-    * It should be up and running but you check by going to http://localhost:8000/
+  * It should be up and running but you check by going to http://localhost:8000/
 
 ### Frontend
 `cd /frontend` to get started in the frontend
   1. run `npm install` to install dependencies
   2. run `npm start` to get the frontend server
-    * it should automatically load into your default browser if not got to http://localhost:3000/
+  * it should automatically load into your default browser if not got to http://localhost:3000/
 
 ***
 [API DOCUMENTATION](https://github.com/Reptar007/SoundCloud-API/wiki/API-DOCUMENTATION)
