@@ -1,5 +1,5 @@
 # Raptor Music
-![image][https://i.imgur.com/KEpFYEo.png]
+![image](https://i.imgur.com/KEpFYEo.png)
 
 ***
 ### SoundCloud Clone
