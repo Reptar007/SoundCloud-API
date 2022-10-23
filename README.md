@@ -36,7 +36,9 @@ Duckir Beats is a full-stack application that is based on SoundCloud. In Duckie 
 
 ***
 ## 🤝 Connect with me:
-[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/)
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/sebastian-antonucci-014101109/)
+&nbsp;
+[![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/)
 
 [API DOCUMENTATION](https://github.com/Reptar007/SoundCloud-API/wiki/API-DOCUMENTATION)
 
