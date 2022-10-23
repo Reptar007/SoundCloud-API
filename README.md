@@ -1,10 +1,10 @@
-# Raptor Music
+# Duckie Beats
 ![image](https://i.imgur.com/KEpFYEo.png)
 
 ***
 ### SoundCloud Clone
 
-Raptor Music is a full-stack application that is based on SoundCloud. In Raptor Music a user is able to listen and see all songs made on the app. Additionally, the user is able to create, update and delete songs. Every song has a comment section that non-users are able to see, but only logged-in users are able to create and delete. Visit [Raptor Music](https://sebastian-soundcloud.herokuapp.com/) to start creating the next big thing!
+Duckir Beats is a full-stack application that is based on SoundCloud. In Duckie Beats, a user is able to listen and see all songs made on the app. Additionally, the user is able to create, update and delete songs. Every song has a comment section that non-users are able to see, but only logged-in users are able to create and delete. Visit [Raptor Music](https://sebastian-soundcloud.herokuapp.com/) to start creating the next big thing!
 
 ***
 
