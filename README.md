@@ -15,13 +15,24 @@ Duckir Beats is a full-stack application that is based on SoundCloud. In Duckie 
   2. created a new folder named `.env` and copy and paste from the `.env.example` file
   3. run `npm start` to started the backend server
   4. `cd ..` to return back to root folder
-  * It should be up and running but you check by going to http://localhost:8000/
+  * It should be up and running but you can check by going to http://localhost:8000/
 
 ### Frontend
 `cd /frontend` to get started in the frontend
   1. run `npm install` to install dependencies
   2. run `npm start` to get the frontend server
   * it should automatically load into your default browser if not got to http://localhost:3000/
+
+***
+## Built With:
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
 ***
 [API DOCUMENTATION](https://github.com/Reptar007/SoundCloud-API/wiki/API-DOCUMENTATION)
