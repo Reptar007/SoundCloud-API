@@ -23,9 +23,10 @@ function UpdateSongForm({ song, setShowModal }) {
       errors.title = "Song title can't be longer than 250 characters";
     if (url.length === 0) errors.url = "Audio is required";
      if (!/^https?:\/\/.+\.(wav|mp3|aac|flac)$/.test(url))
-       errors.url = "Audio must be a real audio file";
+       errors.url = "Audio must start with http and end with wav, mp3 or acc";
      if (!/^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
-       errors.imageUrl = "Must be a real image";
+       errors.imageUrl =
+         "Image must start with https and end with jpeg, jpg, or png";
     if (albumId < 0) errors.albumId = "Album ID can't be negative";
     if (description.length > 250)
       errors.description = "Description can't be longer than 250 characters";
