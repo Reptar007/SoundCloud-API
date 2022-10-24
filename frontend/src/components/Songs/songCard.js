@@ -14,7 +14,7 @@ const SongCard = ({song, formType, user }) => {
   const dispatch = useDispatch()
   const {isPlay, setIsPlay, setIsPaused} = usePlayer()
 
-  console.log(moment(new Date(song?.createdAt)).fromNow())
+ 
   
   useEffect(() => {
     dispatch(getAllSongsThunkCreator())

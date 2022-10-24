@@ -62,8 +62,11 @@ export const createASongThunkCreator = (payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
 
+    console.log(res, '-------------------')
+    
     if(res.ok) {
         const song = await res.json()
+    
         dispatch(post(song))
         return song
     } 
@@ -77,7 +80,6 @@ export const removeSongThunkCreator = (songId) => async dispatch => {
     
     if(res.ok) {
         const data = res.json()
-        console.log('this is my data ', data)
         dispatch(remove(songId))
     }
 }

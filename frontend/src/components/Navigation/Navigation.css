@@ -1,8 +1,9 @@
 nav {
     display: flex;
     background: black;
-    justify-self: center;
+    justify-content: center;
     width: 1240px;
+    
     align-items: center;
     height: 46px;
     margin: auto;
@@ -18,10 +19,6 @@ nav {
     background-color: #333333;
     display: flex;
     justify-content: center;
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    right: 0; */
 }
 
 .container {

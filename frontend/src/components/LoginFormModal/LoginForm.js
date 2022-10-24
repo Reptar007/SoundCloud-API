@@ -31,7 +31,7 @@ function LoginForm() {
 
     if(newUser) history.push('/logged-in')
 };
-  console.log('this is my errors: ' , errors)
+ 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>
