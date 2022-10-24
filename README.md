@@ -81,3 +81,22 @@ List of the functional features of the app.
 [REDUX STORE SHAPE](https://github.com/Reptar007/SoundCloud-API/wiki/SoundCloud-Redux-Store-Shape)
 
 Pseudo code that illustrates the state of the Redux store for the two features that will be implemented. 
+
+***
+
+### Feature Descriptions
+
+## Landing Page
+* A quackster (user) is able to sign-up or login from the landing page
+* on the landing page you are able to play a song
+* The Nav Bar will change depending on the user logged in or not
+* A new quackster is able to look at individual song pages cannot make a comment unless signed in
+![image](https://i.imgur.com/YUm2ntu.png)
+![image](https://i.imgur.com/kMlfJGF.png)
+![image](https://i.imgur.com/IUa1kTD.png)
+
+## User Login Page
+* Once a quackster is logged in, they are able to see all songs created
+* the Nav Bar will change with a create song link and a dropdown menu which they can see their profile and logout buttons
+![image](https://i.imgur.com/TsDmNah.png)
+![image](https://i.imgur.com/ZeLLLze.png)
