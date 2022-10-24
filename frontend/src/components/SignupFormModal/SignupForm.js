@@ -19,17 +19,17 @@ function SignupForm( { setShowModal }) {
   const sessionUser = useSelector((state) => state.session.user);
   if (sessionUser) return <Redirect to="/logged-in" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setHasSubmitted(true)
     if (password === confirmPassword) {
-      setErrors([]);
-     dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
+    setErrors([]);
+     const newuser = await dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
-      
+      if(newuser) history.push('/logged-in')
       }
       return setErrors(['Confirm Password field must be the same as the Password field']);
   };
