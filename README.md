@@ -91,6 +91,7 @@ Pseudo code that illustrates the state of the Redux store for the two features t
 * on the landing page you are able to play a song
 * The Nav Bar will change depending on the user logged in or not
 * A new quackster is able to look at individual song pages cannot make a comment unless signed in
+* it will only show the 12 most recent songs
 ![image](https://i.imgur.com/YUm2ntu.png)
 ![image](https://i.imgur.com/kMlfJGF.png)
 ![image](https://i.imgur.com/IUa1kTD.png)
@@ -100,3 +101,20 @@ Pseudo code that illustrates the state of the Redux store for the two features t
 * the Nav Bar will change with a create song link and a dropdown menu which they can see their profile and logout buttons
 ![image](https://i.imgur.com/TsDmNah.png)
 ![image](https://i.imgur.com/ZeLLLze.png)
+
+## Create Song
+* A quackster can add to the library of songs
+* There are error validations with custom bullet points
+![image](https://i.imgur.com/MXXyPPk.png)
+![image](https://i.imgur.com/Ckzfgzk.png)
+
+## Profile Page
+* A quackster is able to update and delete a song that belongs to them
+![image](https://i.imgur.com/Q5XT25Y.png)
+![image](https://i.imgur.com/uLa8idr.png)
+
+## Single Song Page
+* A quackster is able to comment on songs
+* the comment section has a ' ' ago timestamp that tells you how long ago the comment was made
+* A quackster is able to delete their own comment
+![image](https://i.imgur.com/dqkGoVK.png)
