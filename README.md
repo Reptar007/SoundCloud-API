@@ -121,6 +121,6 @@ Pseudo code that illustrates the state of the Redux store for the two features t
 
 ***
 
-##Future Features
+# Future Features
 
 * Added Feature where a Quackster can upload Albums and songs associated with that album
