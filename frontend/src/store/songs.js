@@ -62,8 +62,6 @@ export const createASongThunkCreator = (payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
 
-    console.log(res, '-------------------')
-    
     if(res.ok) {
         const song = await res.json()
     

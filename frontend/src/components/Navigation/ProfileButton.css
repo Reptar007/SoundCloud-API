@@ -66,3 +66,7 @@
 .username {
     padding-left: 10px;
 }
+
+.nav_links {
+    display: flex;
+}

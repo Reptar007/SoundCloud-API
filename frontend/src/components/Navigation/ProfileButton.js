@@ -36,7 +36,12 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="nav_links">
       <SongCreateButton user={user} />
+      <div className="CreateSong">
+        <NavLink className='navlink' to='/albums' >Albums</NavLink>
+      </div>
+    </div>
       <div className="profile-btn">
         <button onClick={openMenu}>
           <i className="fas fa-user-circle fa-2x" />

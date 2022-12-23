@@ -7,25 +7,25 @@ const albums = [
     userId: 1,
     title: "Pacific DayDream",
     description: "a great album",
-    imageUrl: "image.url",
+    imageUrl: "https://i.imgur.com/w2JwBfr.png",
   },
   {
     userId: 2,
     title: "Just like leaving",
     description: "a great album",
-    imageUrl: "image.url",
+    imageUrl: "https://i.imgur.com/7ghGnUz.png",
   },
   {
     userId: 3,
     title: "Sorry",
     description: "a great album",
-    imageUrl: "image.url",
+    imageUrl: "https://i.imgur.com/g4VNBwY.png",
   },
   {
     userId: 4,
     title: "hometwon",
     description: "a great album",
-    imageUrl: "image.url",
+    imageUrl: "https://i.imgur.com/7GmCjuM.png",
   },
 ];
 module.exports = {
