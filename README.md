@@ -118,3 +118,10 @@ Pseudo code that illustrates the state of the Redux store for the two features t
 * the comment section has a ' ' ago timestamp that tells you how long ago the comment was made
 * A quackster is able to delete their own comment
 ![image](https://i.imgur.com/dqkGoVK.png)
+
+***
+
+# Future Features
+
+* Added Feature where a Quackster can upload Albums and songs associated with that album
+* A song visualizer one single song page
