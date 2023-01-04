@@ -13,6 +13,7 @@ import SingleSongPage from "./components/Songs/SingleSongPage";
 import Player from "./components/AudioPlayer";
 import UserLoginPage from "./components/UserLoginPage";
 import AllAlbums from "./components/Albums";
+import SingleAlbum from "./components/SingleAlbum";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,10 +54,15 @@ function App() {
           <Route path="/songs/:songId">
             <SingleSongPage />
           </Route>
+          
+          <Route path="/albums/:Id">
+            <SingleAlbum />
+          </Route>
 
           <Route path="/albums">
             <AllAlbums user={user} />
           </Route>
+
 
           <Route path="/:userId/songs">
             <UserPage user={user} />

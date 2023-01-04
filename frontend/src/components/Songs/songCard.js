@@ -127,7 +127,7 @@ const SongCard = ({song, formType, user }) => {
     content = (
       <div className="songs">
         <div className="songsImage">
-          <NavLink className="song" to={`songs/${song?.id}`}>
+          <NavLink className="song" to={`/songs/${song?.id}`}>
             <img src={song.imageUrl} alt="" />
           </NavLink>
         </div>
@@ -144,7 +144,7 @@ const SongCard = ({song, formType, user }) => {
             {setButton}
             <div>
               <p className="one loginText italic">{song?.title}</p>
-              <p className="two loginText bold">{song?.User?.username}</p>
+              <p className="two loginText bold">{user?.username}</p>
             </div>
           </div>
           <div className="loginComments">

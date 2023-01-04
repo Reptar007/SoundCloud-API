@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_ALBUMS = 'albums/GETALL'
+const GET_BY_ALBUMID = 'albums/GETBYID'
 
 
 /* ------ ACTIONS CREATOR ------ */
@@ -9,6 +10,13 @@ const get = (albums) => {
     return {
         type: GET_ALL_ALBUMS,
         albums
+    }
+}
+
+const getById = album => {
+    return {
+        type: GET_BY_ALBUMID,
+        album
     }
 }
 
@@ -34,6 +42,17 @@ export const getAllAlbumsByCurrentUserThunkCreator = () => async dispatch => {
     }
 }
 
+export const getAlbumByIdThunkCreator = id => async dispatch => {
+    console.log('This is my album Id', id)
+    const res = await csrfFetch(`/api/albums/${id}`)
+
+    if (res.ok) {
+        const album = await res.json()
+        dispatch(getById(album))
+        return album
+    }
+}
+
 /* ------ REDUCERS ------ */
 
 const initialState = {
@@ -49,6 +68,11 @@ const albumReducer = (state = initialState, action) => {
                 albumState.allAlbums[album.id] = album
             })
             return albumState
+        case GET_BY_ALBUMID:
+            return {
+                ...state,
+                current: action.album
+            }
         default:
             return state
     }

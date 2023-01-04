@@ -5,7 +5,7 @@ import './CreateSongButton.css'
 function SongCreateButton({user}) {
     return (
       <div className='CreateSong'>
-          <NavLink className='navlink' to='/songs/new' exact>Create A Song</NavLink>
+          <NavLink className='navlink' to='/songs/new' exact>Create</NavLink>
       </div>
     );
 }
