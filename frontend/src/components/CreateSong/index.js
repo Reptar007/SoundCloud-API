@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
-import { createASongThunkCreator } from '../../../store/songs'
+import { createASongThunkCreator } from '../../store/songs'
 
 import './CreateSongForm.css'
 
@@ -20,13 +20,16 @@ function CreateSongForm({ user }) {
     const [validateErrors, setValidateErrors] = useState({})
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
+    console.log(imageUrl?.name)
+    console.log(url?.name)
+
     useEffect(() => {
         const errors = {}
         if(title.length === 0) errors.title = "Song title is required"
         if(title.length > 50) errors.title = "Song title can't be longer than 100 characters"
         if(url.length === 0) errors.url = "Audio is required"
-        if(!/^https?:\/\/.+\.(wav|mp3|aac|flac)$/.test(url)) errors.url = 'Audio must start with https:// and end with wav, mp3 or acc'
-        if (!/^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl)) errors.imageUrl ='Image must start with https:// and end with jpeg, jpg, or png'
+        if(!/^\S+.(wav|mp3|aac|flac)$/.test(url?.name)) errors.url = 'Audio must end with wav, mp3 or acc and no spaces'
+        if (!/^\S+.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl?.name)) errors.imageUrl ='Image must end with jpeg, jpg, or png and no spaces'
         if (description.length > 250) errors.description = "Description can't be longer than 250 characters";
         setValidateErrors(errors)
     },[title, url,description,imageUrl])
@@ -46,6 +49,7 @@ function CreateSongForm({ user }) {
             albumId: null
         }
 
+        console.log(payload)
         let createdSong = await dispatch(createASongThunkCreator(payload))
         if(createdSong && Object.keys(validateErrors).length === 0) {
             history.push(`/${user.id}`)
@@ -56,6 +60,16 @@ function CreateSongForm({ user }) {
         setUrl('')
         setImageUrl('')
         setValidateErrors({})
+    }
+
+    const updateUrl = (e) => {
+      const url = e.target.files[0]
+      if (url) setUrl(url)
+    }
+
+    const updateImage = (e) => {
+      const image = e.target.files[0]
+      if(image) setImageUrl(image)
     }
 
     return (
@@ -79,11 +93,10 @@ function CreateSongForm({ user }) {
                 {validateErrors.title}
               </li>
             )}
+            Audio
             <input
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="Audio URL"
+              type="file"
+              onChange={updateUrl}
             />
             {hasSubmitted && validateErrors.url && (
               <li className="errors">
@@ -95,11 +108,10 @@ function CreateSongForm({ user }) {
                 {validateErrors.url}
               </li>
             )}
+            Cover Art
             <input
-              type="text"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Image URL"
+              type="file"
+              onChange={updateImage}
             />
             {hasSubmitted && validateErrors.imageUrl && (
               <li className="errors">

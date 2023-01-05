@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 import { getAllSongsThunkCreator } from "./store/songs";
 
 import Songs from "./components/Songs";
-import CreatSongFrom from "./components/Navigation/CreateSong";
+import CreatSongFrom from "./components/CreateSong";
 import UserPage from "./components/UserPage";
 import SingleSongPage from "./components/Songs/SingleSongPage";
 import Player from "./components/AudioPlayer";

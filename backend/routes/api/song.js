@@ -6,15 +6,13 @@ const { Song, Album, Comment, Playlist, User } = require('../../db/models')
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
+const { multipleMulterUpload, multiplePublicFileUpload } = require('../../awsS3')
+
 const validateSongs = [
   check("title")
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage("Song title is required"),
-  check("url")
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .withMessage("Audio is required"),
   handleValidationErrors,
 ];
 
@@ -123,9 +121,14 @@ router.get('/:songId',  async(req,res) =>{
     res.json(body)
 })
 
-router.post("/", [validateSongs, requireAuth], async(req, res)=>{
-    const { title, description, url, imageUrl, albumId } = req.body
-
+router.post("/", 
+  multipleMulterUpload('songFiles'), 
+  [validateSongs, requireAuth], 
+  async(req, res)=>{
+    
+    const { title, description, albumId } = req.body
+    const songFiles = multiplePublicFileUpload(req.files)
+    
     const test = await Album.findByPk(albumId)
 
     if(!test && albumId !== null) {
@@ -141,8 +144,8 @@ router.post("/", [validateSongs, requireAuth], async(req, res)=>{
     const newSong = await Song.create({
         title,
         description,
-        url,
-        imageUrl,
+        url: songFiles[0],
+        imageUrl: songFiles[1],
         albumId,
         userId: req.user.id
     })
