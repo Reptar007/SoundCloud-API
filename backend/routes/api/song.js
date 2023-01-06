@@ -124,11 +124,10 @@ router.get('/:songId',  async(req,res) =>{
 router.post("/", 
   multipleMulterUpload('songFiles'), 
   [validateSongs, requireAuth], 
-  async(req, res)=>{
-    
+  async(req, res)=>{ 
+    req.body.albumId === "null" ? (req.body.albumId = null) : null;
     const { title, description, albumId } = req.body
-    const songFiles = multiplePublicFileUpload(req.files)
-    
+    const songFiles = await multiplePublicFileUpload(req.files)
     const test = await Album.findByPk(albumId)
 
     if(!test && albumId !== null) {
@@ -149,6 +148,7 @@ router.post("/",
         albumId,
         userId: req.user.id
     })
+
     
     res.json(res.status = 201, newSong)
 });

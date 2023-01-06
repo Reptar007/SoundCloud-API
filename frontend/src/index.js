@@ -26,13 +26,13 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <Provider store={store}>
-        <PlayerProvider>
-          <ModalProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </ModalProvider>
-        </PlayerProvider>
+      <PlayerProvider>
+        <ModalProvider>
+          <BrowserRouter> 
+            <App />
+          </BrowserRouter>
+        </ModalProvider>
+      </PlayerProvider>
     </Provider>
   );
 }

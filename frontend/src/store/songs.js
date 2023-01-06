@@ -56,7 +56,6 @@ export const getAllSongsThunkCreator = () => async dispatch => {
 }
 
 export const createASongThunkCreator = (payload) => async dispatch => {
-    console.log("THIS IS MY PAYLOAD", payload)
     
     const { title, description, url, imageUrl, albumId } = payload
     const formData = new FormData()
@@ -64,8 +63,7 @@ export const createASongThunkCreator = (payload) => async dispatch => {
     formData.append("description", description)
     formData.append("songFiles", url)
     formData.append("songFiles", imageUrl)
-
-    if(albumId) formData.append("albumId", albumId)
+    formData.append("albumId", albumId)
 
     const res = await csrfFetch("/api/songs", {
       method: "POST",
@@ -89,7 +87,6 @@ export const removeSongThunkCreator = (songId) => async dispatch => {
     })
     
     if(res.ok) {
-        const data = res.json()
         dispatch(remove(songId))
     }
 }

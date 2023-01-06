@@ -43,7 +43,6 @@ export const getAllAlbumsByCurrentUserThunkCreator = () => async dispatch => {
 }
 
 export const getAlbumByIdThunkCreator = id => async dispatch => {
-    console.log('This is my album Id', id)
     const res = await csrfFetch(`/api/albums/${id}`)
 
     if (res.ok) {

@@ -80,3 +80,41 @@
 
     width: fit-content;
 }
+
+input[type=file] {
+    display: none;
+}
+
+label {
+    width: 80%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+    color: grey;
+}
+
+label:hover {
+    border: 1px solid rgb(192, 192, 192);
+    cursor: pointer;
+}
+
+select {
+    width: 80%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+    appearance: none;
+    color: grey;
+}
+
+select:hover {
+    border: 1px solid rgb(192, 192, 192);
+    cursor: pointer;
+}
+

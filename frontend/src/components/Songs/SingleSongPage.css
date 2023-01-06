@@ -29,14 +29,15 @@
     position: absolute;
     bottom: 1rem;
     right: 2rem;
-    max-height: 340px;
-    max-width: 340px;
+    height: 320px;
+    width: 320px;
     z-index: 2;
 }
 
 .singleImage > img {
     height: 100%;
     width: 100%;
+    object-fit: fill;
 }
 
 .singlePlayDescription {

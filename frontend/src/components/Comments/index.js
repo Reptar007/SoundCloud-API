@@ -16,17 +16,20 @@ function Comments({ formType, song }) {
     const [validateErrors, setValidateErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
+    
     useEffect(() => {
-        dispatch(getCommentsBySongIdThunkCreator(song.id))
+      dispatch(getCommentsBySongIdThunkCreator(song?.id))
     }, [dispatch,song.id])
-
+    
     useEffect(() => {
-        const errors = []
-        if(body.length === 0) errors.push("Comment body text is required");
-        if(body.length > 250) errors.push('comments can only be 250 characters long')
-        setValidateErrors(errors)
+      const errors = []
+      if(body.length === 0) errors.push("Comment body text is required");
+      if(body.length > 250) errors.push('comments can only be 250 characters long')
+      setValidateErrors(errors)
     }, [body])
-
+    
+    if(!song) return null
+    
     const handleSubmit = async(e) => {
         e.preventDefault()
         setHasSubmitted(true)
