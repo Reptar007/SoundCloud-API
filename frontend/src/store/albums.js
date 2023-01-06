@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_ALBUMS = 'albums/GETALL'
 const GET_BY_ALBUMID = 'albums/GETBYID'
-
+const POST_AN_ALBUM = 'albums/POST'
 
 /* ------ ACTIONS CREATOR ------ */
 
@@ -16,6 +16,13 @@ const get = (albums) => {
 const getById = album => {
     return {
         type: GET_BY_ALBUMID,
+        album
+    }
+}
+
+const post = album => {
+    return {
+        type: POST_AN_ALBUM,
         album
     }
 }
@@ -52,6 +59,28 @@ export const getAlbumByIdThunkCreator = id => async dispatch => {
     }
 }
 
+export const createAnAlbumThunkCreator = ({title, description, imageUrl}) => async dispatch => {
+    const formData = new FormData()
+    formData.append("title", title)
+    formData.append("description", description)
+    formData.append("image", imageUrl)
+
+    const res = await csrfFetch("/api/albums", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: formData,
+    });
+
+    if(res.ok) {
+        const album = await res.json()
+        dispatch(post(album))
+        return album
+    }
+
+}
+
 /* ------ REDUCERS ------ */
 
 const initialState = {
@@ -72,6 +101,9 @@ const albumReducer = (state = initialState, action) => {
                 ...state,
                 current: action.album
             }
+        case POST_AN_ALBUM:
+            albumState.allAlbums[action.album.id] = action.album
+            return albumState
         default:
             return state
     }

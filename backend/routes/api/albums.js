@@ -6,8 +6,9 @@ const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
-
 const router = express.Router();
+
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 
 const validateAlbums = [
   check("title")
@@ -75,8 +76,12 @@ router.get('/:albumId', async(req, res, next)=>{
     res.json(body)
 })
 
-router.post('/', requireAuth, validateAlbums, async(req, res, next)=>{
-    const { title, description, imageUrl } = req.body
+router.post('/', 
+singleMulterUpload('image'),
+requireAuth, validateAlbums, 
+async(req, res, next)=>{
+    const { title, description } = req.body
+    const imageUrl = await singlePublicFileUpload(req.file)
 
     const newAlbum = await Album.create({
         userId: req.user.id,

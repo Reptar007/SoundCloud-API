@@ -118,3 +118,37 @@ select:hover {
     cursor: pointer;
 }
 
+.choosePath {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 600px;
+    width: 400px;
+    padding: 2rem;
+}
+
+.choosePath > h1 {
+    font-size: 1.5em;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    font-size: xx-large;
+}
+
+.path {
+    width: 80%;
+    height: 100px;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: black;
+    font-size: x-large;
+    color: white;
+}
+
+.path:hover {
+    border: 2px solid black;
+    background: #FFDE59;
+    color: black;
+    cursor: pointer;
+}

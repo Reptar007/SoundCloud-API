@@ -8,7 +8,7 @@ import { createASongThunkCreator } from "../../store/songs";
 
 import "./CreateSongForm.css";
 
-function CreateSongForm({ user }) {
+function CreateSongForm({ user,back }) {
   const albums = useSelector((state) => Object.values(state.albums.allAlbums));
   let userAlbums = albums.filter((album) => album.userId === user.id);
 
@@ -82,103 +82,103 @@ function CreateSongForm({ user }) {
   };
 
   return (
-    <>
-            {isLoading ? (
-            <LoadingSpinner />
-            ) : (
-            <form onSubmit={handleSubmit}>
-                <h1>
-                Ready to create <br /> your hatchling?
-                </h1>
-                <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Title"
-                />
-                {hasSubmitted && validateErrors.title && (
-                <li className="errors">
-                    <img
-                    className="errorDuck"
-                    src="https://i.imgur.com/7OuSWd1.png"
-                    alt=""
-                    />{" "}
-                    {validateErrors.title}
-                </li>
-                )}
-                <input type="file" id="file-input-audio" onChange={updateUrl} />
-                <label for="file-input-audio">
-                {url ? url.name : "Choose an audio..."}
-                </label>
-                {hasSubmitted && validateErrors.url && (
-                <li className="errors">
-                    <img
-                    className="errorDuck"
-                    src="https://i.imgur.com/7OuSWd1.png"
-                    alt=""
-                    />{" "}
-                    {validateErrors.url}
-                </li>
-                )}
-                <input type="file" id="file-input-image" onChange={updateImage} />
-                <label for="file-input-image">
-                {imageUrl ? imageUrl.name : "Choose an image..."}
-                </label>
-                {hasSubmitted && validateErrors.imageUrl && (
-                <li className="errors">
-                    <img
-                    className="errorDuck"
-                    src="https://i.imgur.com/7OuSWd1.png"
-                    alt=""
-                    />{" "}
-                    {validateErrors.imageUrl}
-                </li>
-                )}
-                <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-                />
-                {hasSubmitted && validateErrors.description && (
-                <li className="errors">
-                    <img
-                    className="errorDuck"
-                    src="https://i.imgur.com/7OuSWd1.png"
-                    alt=""
-                    />{" "}
-                    {validateErrors.description}
-                </li>
-                )}
-                <select
-                value={albumId}
-                onChange={(e) => setAlbumId(e.target.value)}
-                >
-                <option disabled={true} value="">
-                    Choose an album...
-                </option>
-                <option value={"null"}>None</option>
-                {userAlbums.map((album) => (
-                    <option key={album.id} value={album.id}>
-                    {album.title}
-                    </option>
-                ))}
-                </select>
-                {hasSubmitted && validateErrors.albumId && (
-                <li className="errors">
-                    <img
-                    className="errorDuck"
-                    src="https://i.imgur.com/7OuSWd1.png"
-                    alt=""
-                    />{" "}
-                    {validateErrors.albumId}
-                </li>
-                )}
-                <button type="submit">Create Song</button>
-            </form>
-            )}
-    </>
-  )
+    <div div className="formContainer">
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <h1>
+            Ready to create <br /> your hatchling?
+          </h1>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+          />
+          {hasSubmitted && validateErrors.title && (
+            <li className="errors">
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {validateErrors.title}
+            </li>
+          )}
+          <input type="file" id="file-input-audio" onChange={updateUrl} />
+          <label for="file-input-audio">
+            {url ? url.name : "Choose an audio..."}
+          </label>
+          {hasSubmitted && validateErrors.url && (
+            <li className="errors">
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {validateErrors.url}
+            </li>
+          )}
+          <input type="file" id="file-input-image" onChange={updateImage} />
+          <label for="file-input-image">
+            {imageUrl ? imageUrl.name : "Choose an image..."}
+          </label>
+          {hasSubmitted && validateErrors.imageUrl && (
+            <li className="errors">
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {validateErrors.imageUrl}
+            </li>
+          )}
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Description"
+          />
+          {hasSubmitted && validateErrors.description && (
+            <li className="errors">
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {validateErrors.description}
+            </li>
+          )}
+          <select value={albumId} onChange={(e) => setAlbumId(e.target.value)}>
+            <option disabled={true} value="">
+              Choose an album...
+            </option>
+            <option value={"null"}>None</option>
+            {userAlbums.map((album) => (
+              <option key={album.id} value={album.id}>
+                {album.title}
+              </option>
+            ))}
+          </select>
+          {hasSubmitted && validateErrors.albumId && (
+            <li className="errors">
+              <img
+                className="errorDuck"
+                src="https://i.imgur.com/7OuSWd1.png"
+                alt=""
+              />{" "}
+              {validateErrors.albumId}
+            </li>
+          )}
+    
+            <button onClick={back}>Back</button>
+            <button type="submit">Create Song</button>
+ 
+        </form>
+      )}
+    </div>
+  );
 }
 
 export default CreateSongForm;
