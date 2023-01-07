@@ -3,7 +3,7 @@ const express = require("express");
 const { requireAuth } = require("../../utils/auth");
 const { Song, Album, Comment, Playlist, User } = require("../../db/models");
 
-const { check } = require("express-validator");
+const { check, sanitizeBody } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
@@ -94,7 +94,10 @@ async(req, res, next)=>{
     res.json(res.status = 201, newAlbum)
 })
 
-router.put('/:albumId', requireAuth, validateAlbums, async(req, res, next) =>{
+router.put('/:albumId', 
+  singleMulterUpload('image'),
+  requireAuth, validateAlbums, 
+  async(req, res, next) =>{
     const foundAlbum = await Album.findByPk(req.params.albumId)
 
     if (!foundAlbum) {
@@ -106,7 +109,10 @@ router.put('/:albumId', requireAuth, validateAlbums, async(req, res, next) =>{
     }
 
     if (foundAlbum.userId === req.user.id) {
-      const { title, description, imageUrl } = req.body;
+
+      const { title, description } = req.body
+      let imageUrl;
+      req.file ? imageUrl = await singlePublicFileUpload('image') : {imageUrl} = req.body
       const updateAlbum = await foundAlbum.update({
         title,
         description,

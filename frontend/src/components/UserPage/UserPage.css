@@ -66,8 +66,15 @@
 
 .profileNavBar > h4  {
     z-index: 4;
-    padding-top: 8px;
+    padding: 8px 20px;
     height: 105%;
+}
+
+.profileNavBar> h4:hover {
+    color: #FFDe59;
+    cursor: pointer;
+    border-bottom: 1px solid #FFDe59;
+    font-size: 1.1rem;
 }
 
 

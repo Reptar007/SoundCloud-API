@@ -54,6 +54,18 @@
     margin-bottom: 10px;
     border-radius: 20px;
     background: #e4e4e4;
+    text-align: center;
+}
+
+#modal-content>form label {
+    width: 92%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+    overflow: hidden;
 }
 
 #modal-content>form input:focus {
