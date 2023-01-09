@@ -91,11 +91,21 @@ export const removeSongThunkCreator = (songId) => async dispatch => {
     }
 }
 
-export const updateSongThunkCreator = (payload, id) => async dispatch => {
+export const updateSongThunkCreator = ({title, description, albumId, url, imageUrl}, id) => async dispatch => {
+    
+    const formData = new FormData()
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("songFiles", url);
+    formData.append("songFiles", imageUrl);
+    formData.append("albumId", albumId);
+    
     const res = await csrfFetch(`/api/songs/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+      method: "PUT",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: formData,
     });
 
     if(res.ok) {

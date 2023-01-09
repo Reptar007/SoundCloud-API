@@ -154,7 +154,10 @@ router.post("/",
 });
 
 
-router.put('/:songId', validateSongs, requireAuth, async(req,res,next) =>{
+router.put('/:songId',
+multipleMulterUpload('songFiles'),
+validateSongs, requireAuth, 
+async(req,res,next) =>{
     const foundSong = await Song.findByPk(req.params.songId)
     if(!foundSong) {
         res.json(
@@ -165,7 +168,27 @@ router.put('/:songId', validateSongs, requireAuth, async(req,res,next) =>{
         });
     }
     if(foundSong.userId === req.user.id) {
-        const { title, description, url, imageUrl, albumId } = req.body
+        req.body.albumId === "null" ? (req.body.albumId = null) : null;
+        const { title, description, albumId } = req.body
+
+        let url;
+        let imageUrl;
+        const songFiles = await multiplePublicFileUpload(req.files); 
+        if(req.body.songFiles && req.body.songFiles.length !== 2) {
+          const fileparse = req.body.songFiles.split('.')
+          const lastEle = fileparse[fileparse.length - 1]
+          if(lastEle === ('wav'|| "mp3" || "aac" || "flac")) {
+            url = req.body.songFiles
+            imageUrl = songFiles[0]
+          } else {
+            url = songFiles[0]
+            imageUrl = req.body.songFiles
+          }
+        } else {
+          url = songFiles[0]
+          imageUrl = songFiles[1]
+        }
+
 
         const updatedSong = await foundSong.update({
             title,

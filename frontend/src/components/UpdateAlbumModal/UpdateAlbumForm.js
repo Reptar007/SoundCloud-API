@@ -13,7 +13,7 @@ export default function UpdateAlbumForm({ album, setShowModal }) {
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState(album.title || "");
   const [description, setDescription] = useState(album.description || "");
-  const [imageUrl, setImageUrl] = useState(album.imageUrl || '');
+  const [imageUrl, setImageUrl] = useState(album.imageUrl || album.imageUrl.name || '');
   const [validateErrors, setValidateErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -22,7 +22,7 @@ export default function UpdateAlbumForm({ album, setShowModal }) {
     if (title.length === 0) errors.title = "Album title is required";
     if (title.length > 50)
       errors.title = "Album title can't be longer than 100 characters";
-    if (!/^\S+.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl))
+    if (!/^\S+.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(imageUrl.name || imageUrl))
       errors.imageUrl = "Image must end with jpeg, jpg, or png and no spaces";
     if (description.length === 0) errors.description = "Can't be empty";
     if (description.length > 250)
@@ -108,7 +108,7 @@ export default function UpdateAlbumForm({ album, setShowModal }) {
           )}
           <input type="file" id="file-input-image" onChange={updateImage} />
           <label for="file-input-image">
-            {imageUrl ? imageUrl: "Choose an image..."}
+            {imageUrl.name ? imageUrl.name : imageUrl || "Choose an image..."}
           </label>
           {hasSubmitted && validateErrors.imageUrl && (
             <li className="errors">

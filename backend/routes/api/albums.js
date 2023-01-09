@@ -112,7 +112,7 @@ router.put('/:albumId',
 
       const { title, description } = req.body
       let imageUrl;
-      req.file ? imageUrl = await singlePublicFileUpload('image') : {imageUrl} = req.body
+      req.file ? imageUrl = await singlePublicFileUpload(req.file) : {imageUrl} = req.body
       const updateAlbum = await foundAlbum.update({
         title,
         description,
